@@ -3,6 +3,9 @@
 ## 画面遷移図
 https://www.figma.com/file/RKccM169KFeAFrlyPPK0AF/%E3%83%A8%E3%82%AC%E5%9B%B3%E9%91%91?type=design&node-id=0%3A1&mode=design&t=Nn7fltJaA3MJz3aQ-1
 
+## ER図
+URL：https://drive.google.com/file/d/1VT4uV6bPOCw5I1C_uHfcN0ms85_1Vgpv/view?usp=sharing
+[![Image from Gyazo](https://i.gyazo.com/09d41c1de17df74e160c6fa6b1b9f468.png)](https://gyazo.com/09d41c1de17df74e160c6fa6b1b9f468)
 
 
 ## サービス概要
