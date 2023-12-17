@@ -1,24 +1,53 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+git cloneした後、
 
-Things you may want to cover:
+## `yoga_zukan`ディレクトリで一気に実行
 
-* Ruby version
+```
+# yoga_zukanディレクトリで実行
+docker-compose build
+docker-compose run front yarn install
+docker-compose run --rm back bundle install
+docker-compose build back
+docker-compose run --rm back rails db:create
+docker-compose up
+```
 
-* System dependencies
+## ディレクトリを移動しながら
 
-* Configuration
+```
+# yoga_zukanディレクトリで実行
+docker-compose build
+```
 
-* Database creation
+**フロントエンドの依存関係のインストール:**
+```
+# frontディレクトリで実行
+docker-compose run front yarn install
+```
 
-* Database initialization
+**フロントエンドのサーバー起動:**
+```
+# frontディレクトリで実行
+docker-compose up front
+```
 
-* How to run the test suite
+**バックエンドの依存関係のインストールとビルド:**
+```
+# backディレクトリで実行
+docker-compose run --rm back bundle install
+docker-compose build back
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+**バックエンドのデータベース作成:**
+```
+# backディレクトリで実行
+docker-compose run --rm back rails db:create
+```
 
-* Deployment instructions
-
-* ...
+**全体の起動:**
+```
+# yoga_zukanディレクトリで実行
+docker-compose up -d
+```
