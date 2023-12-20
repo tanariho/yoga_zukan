@@ -113,8 +113,18 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.15.5-aarch64-linux)
       racc (~> 1.4)
+    nokogiri (1.15.5-arm-linux)
+      racc (~> 1.4)
+    nokogiri (1.15.5-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.5-x86-linux)
+      racc (~> 1.4)
+    nokogiri (1.15.5-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.5-x86_64-linux)
+      racc (~> 1.4)
     pg (1.5.4)
-    psych (5.1.1.1)
+    psych (5.1.2)
       stringio
     puma (5.6.7)
       nio4r (~> 2.0)
@@ -169,6 +179,11 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  arm-linux
+  arm64-darwin
+  x86-linux
+  x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
@@ -184,4 +199,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.22
+   2.5.1
