@@ -1,18 +1,31 @@
-import Title from "./components/top/Title"
+'use client'
 import Footer from "./components/top/Footer";
-import Header from "./components/top/Header";
+import { useSession } from 'next-auth/react';
+import Login from './components/Login';
+import Logout from './components/Logout';
+
+
 
 export default function Home() {
-  return (
-    <div>
-      <main className="flex bg-gradient-to-r from-lime-200 to-lime-50 relative">
-
-        <section className="flex-grow min-h-screen">
-          <Header />
-          <Title />
-          <Footer />
-        </section>
-      </main>
-    </div>
-  );
+	const { data: session, status } = useSession();
+	return (
+		<div>
+			{status === 'authenticated' ? (
+				<div>
+					<p>セッションの期限：{session.expires}</p>
+					<p>ようこそ、{session.user?.name}さん</p>
+					<img
+						src={session.user?.image ?? ``}
+						alt=""
+						style={{ borderRadius: '50px' }}
+					/>
+					<div>
+						<Logout />
+					</div>
+				</div>
+			) : (
+				<Login />
+			)}
+		</div>
+	);
 }
