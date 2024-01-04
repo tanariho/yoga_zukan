@@ -12,7 +12,7 @@ const Navbar = () => {
           <Link href='/'>About</Link>
         </li>
         <li className = 'p-2 cursor-pointer'>
-          <Link href='/'>Profile</Link>
+          <Link href='/quiz'>ヨガクイズ</Link>
         </li>
       </ul>
       <ul className = 'flex'>
