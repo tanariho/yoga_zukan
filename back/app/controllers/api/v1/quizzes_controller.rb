@@ -1,22 +1,24 @@
 class Api::V1::QuizzesController < ApplicationController
+  before_action :set_quiz, only: [:show]
+
   def index
-    @quiz = Quiz.all
-    render json: @quiz
+    @quizzes = Quiz.all
+    render json: @quizzes
   end
 
   def show
     render json: @quiz
   end
 
-  def create
-   @quiz = Quiz.new (quiz_params)
+  # def create
+  #  @quiz = Quiz.new(quiz_params)
 
-    if @quiz.save
-      render json: @quiz, status: :created 
-    else 
-      render json: @quiz.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @quiz.save
+  #     render json: @quiz, status: :created 
+  #   else 
+  #     render json: @quiz.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   private 
 
@@ -25,7 +27,7 @@ class Api::V1::QuizzesController < ApplicationController
   end
 
   def set_quiz 
-     quiz = quiz.find(params[:id])
+     @quiz = Quiz.find(params[:id])
   end
 
 end
