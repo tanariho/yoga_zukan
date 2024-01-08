@@ -9,10 +9,10 @@ const Navbar = () => {
           <Link href='/'>Home</Link>
         </li>
         <li className = 'p-2 cursor-pointer'>
-          <Link href='/'>About</Link>
+          <Link href='/profile'>ヨガクイズテスト</Link>
         </li>
         <li className = 'p-2 cursor-pointer'>
-          <Link href='/quiz'>ヨガクイズ</Link>
+          <Link href='/question'>ヨガクイズ</Link>
         </li>
       </ul>
       <ul className = 'flex'>
