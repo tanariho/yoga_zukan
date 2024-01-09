@@ -23,14 +23,14 @@ export default function ExampleClientComponent() {
       <h1>これはヨガ検定の問題です。</h1>
       <div className="mx-auto w-8/12 mt-10">
         <div className="grid grid-cols-2 gap-4">
-          {data.map((question: any) => (
+          {data.map((question :any) => (
             <Card key={question.id} className='p-5 border border-gray-200 rounded-lg'>
               <div>問題: {question.title}</div>
-                {question.answers.map((answer :any) => (
               <ul>
+                {question.answers.map((answer :any) => (
                   <li key={answer.id}>・{answer.content}</li>
-              </ul>
                 ))}
+              </ul>
             </Card>
           ))}
         </div>
