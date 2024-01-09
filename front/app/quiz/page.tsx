@@ -1,21 +1,18 @@
-'use client'
+"use client";
 import React from "react";
-import useSWR from 'swr';
+import useSWR from "swr";
 import { fetcher } from "../_common/utils";
 import Link from "next/link";
-
 
 interface Answer {
   id: number;
   content: string;
-
 }
 
 interface quiz {
   id: number;
   title: string;
   answers: Answer[];
-
 }
 
 interface Quiz {
@@ -26,7 +23,7 @@ interface Quiz {
 }
 
 const QuizPage: React.FC = () => {
-  const url = 'http://localhost:3000/api/v1/quizzes'
+  const url = "http://localhost:3000/api/v1/quizzes";
   const { data, error } = useSWR(url, fetcher);
 
   if (error) return <div>An error has occurred.</div>;
@@ -34,15 +31,15 @@ const QuizPage: React.FC = () => {
 
   return (
     <>
+      <div className="container">
         {data.map((quiz: any) => (
-          <div className="container">
-            <Link href={`/question/${quiz.id}`}>
-              <div key={quiz.id}>
-                <h3>{quiz.title}</h3>
-              </div>
-            </Link>
-          </div>
+          <Link href={`/question/${quiz.id}`}key={quiz.id}>
+            <div>
+              <h3>{quiz.title}</h3>
+            </div>
+          </Link>
         ))}
+      </div>
     </>
   );
 };
