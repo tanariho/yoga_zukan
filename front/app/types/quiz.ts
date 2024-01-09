@@ -1,19 +1,21 @@
 // QuizResponse.ts
 
-export interface Answer {
+interface Answer {
   id: number;
   content: string;
-  correct: boolean;
+  // 他の必要なフィールド
 }
 
-export interface Question{
+interface Question {
   id: number;
   title: string;
-
+  answers: Answer[];
+  // 他の必要なフィールド
 }
 
-export interface Quiz {
+interface Quiz {
   id: number;
   title: string;
+  level: string;
+  questions: Question[];
 }
-
