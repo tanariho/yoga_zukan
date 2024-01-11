@@ -5,19 +5,19 @@ Quiz.destroy_all
 Question.destroy_all
 Answer.destroy_all
 
-users = [
-  { id: 1, email: 'test1@example.com', name: 'ロージー' ,provider: "yoga",uid: "1111"},
-  { id: 2, email: 'test2@example.com', name: 'ルル' ,provider: "yoga",uid: "2222" },
-  { id: 3, email: 'test3@example.com', name: 'フレンチー' ,provider: "yoga",uid: "3333"},
-  { id: 4, email: 'test4@example.com', name: 'テキサス' ,provider: "yoga",uid: "4444"},
-  { id: 5, email: 'test5@example.com', name: 'フリッツィー' ,provider:"yoga",uid:"5555"},
-  { id: 6, email: 'test6@example.com', name: 'ヘルガ' ,provider:"yoga",uid:"6666"}
-]
+# users = [
+#   { id: 1, email: 'test1@example.com', name: 'ロージー' ,provider: "yoga",uid: "1111"},
+#   { id: 2, email: 'test2@example.com', name: 'ルル' ,provider: "yoga",uid: "2222" },
+#   { id: 3, email: 'test3@example.com', name: 'フレンチー' ,provider: "yoga",uid: "3333"},
+#   { id: 4, email: 'test4@example.com', name: 'テキサス' ,provider: "yoga",uid: "4444"},
+#   { id: 5, email: 'test5@example.com', name: 'フリッツィー' ,provider:"yoga",uid:"5555"},
+#   { id: 6, email: 'test6@example.com', name: 'ヘルガ' ,provider:"yoga",uid:"6666"}
+# ]
 
 
-users.each do |user|
-  User.create!(user)
-end
+# users.each do |user|
+#   User.create!(user)
+# end
 
 
 quizzes = [
