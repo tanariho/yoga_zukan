@@ -1,11 +1,25 @@
-import React from 'react'
+import fetchUserId from "../components/fetcher/user/FetchUser";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "@/lib/next-auth/options";
 
-const page = () => {
+export default async function Home() {
+  const session = await getServerSession(nextAuthOptions);
+  console.log(session);
+  if (!session || !session.user || !session.user.email) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  const userId = await fetchUserId(session.user.email)
+  console.log(userId)
+
   return (
-    <div className='p-4'>
-      About Page
-    </div>
-  )
+    <>
+      <div>user_id: {userId}</div>
+    </>
+  );
 }
-
-export default page
