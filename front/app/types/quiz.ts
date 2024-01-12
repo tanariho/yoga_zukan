@@ -1,16 +1,16 @@
 // QuizResponse.ts
 
 interface Answer {
+  correct: boolean;
   id: number;
   content: string;
-  // 他の必要なフィールド
 }
 
 interface Question {
   id: number;
   title: string;
   answers: Answer[];
-  // 他の必要なフィールド
+  questions: Question[]
 }
 
 interface Quiz {
@@ -18,4 +18,8 @@ interface Quiz {
   title: string;
   level: string;
   questions: Question[];
+}
+
+interface Answers {
+  [key: number]: number; // 各質問のIDに対するユーザーの回答のIDをマッピング
 }

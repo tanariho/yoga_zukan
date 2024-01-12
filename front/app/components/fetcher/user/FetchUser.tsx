@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const fetchUserId = async (email: any): Promise<number | null> => {
+const fetchUserId = async (email: string): Promise<number | null> => {
   try {
-    const response = await axios.get(`http://back:3000/api/v1/users`, {
+    const response = await axios.get(`http://localhost:3000/api/v1/users`, {
       params: { email: email },
     })
 
