@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :quizzes
       resources :questions
+      resources :quiz_results, only: [:create]
       resources :users, only: [:index]
     end
   end
