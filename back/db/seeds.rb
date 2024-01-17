@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-User.destroy_all
+
+QuizResult.destroy_all
 Quiz.destroy_all
 Question.destroy_all
 Answer.destroy_all
+UserYogaPose.destroy_all
+YogaPose.destroy_all
 
 # users = [
 #   { id: 1, email: 'test1@example.com', name: 'ロージー' ,provider: "yoga",uid: "1111"},
@@ -45,16 +48,18 @@ questions = [
   { id: 4, quiz_id: 1,title: '太陽礼拝（サン・サラスティ）は、何を讃えるために行われるヨガの練習ですか？'},
   { id: 5, quiz_id: 1,title: 'ヨガのポーズで、足を広げて手を天井に向けて仰向けになり、リラックスするポーズは何でしょうか？'},
   # ヨガ検定9級
-  { id: 20, quiz_id: 2, title: 'ヨガ哲学で、身体のポーズや動きを指す「アーサナ」は何を意味しますか？'},
-  { id: 21, quiz_id: 2, title: 'ヨガは主に何を組み合わせた実践ですか？'},
-  { id: 22, quiz_id: 2, title: 'ヨガの瞑想でよく使われる言葉は何ですか？'},
-  { id: 23, quiz_id: 2, title: 'ヨガのポーズで、手を床につけてお尻を上げるポーズは何でしょうか？' },
-  { id: 24, quiz_id: 2, title: 'ヨガの言葉で、呼吸の制御を指すものは何ですか？'},
-  { id: 25, quiz_id: 2, title: 'ヨガの哲学で、「非暴力」を表す言葉は何でしょうか？'},
-  { id: 26, quiz_id: 2, title: 'ヨガのポーズで、仰向けになり膝を胸に引き寄せるポーズは何でしょうか？'},
-  { id: 27, quiz_id: 2, title: 'ヨガの基本の原則で、「今この瞬間に集中する」という概念は何でしょうか？'},
-  { id: 28, quiz_id: 2, title: 'ヨガのポーズで、床に座り両足を広げて伸ばすポーズは何でしょうか？' },
-  { id: 29, quiz_id: 2, title: 'ヨガの言葉で、個々の義務や責任を指すものは何ですか？'}
+  { id: 10, quiz_id: 2, title: 'ヨガの「八支則」の一つではないものは？'},
+  { id: 11, quiz_id: 2, title: 'ヨガのクラスで「ナマステ」と言う意味は何？'},
+  { id: 12, quiz_id: 2, title: '「シャヴァーサナ」で重要なのは？'},
+  { id: 13, quiz_id: 2, title: 'ヨガのクラスでの「深呼吸」の目的は何？' },
+  { id: 14, quiz_id: 2, title: 'ヨガのポーズで「ツリーポーズ」が象徴するのは何？'},
+
+  #ヨガ検定8級
+  { id: 20, quiz_id: 3, title: 'ヨガで「チャクラ」とは何？'},
+  { id: 21, quiz_id: 3, title: '「笑いヨガ」を行う目的は何？'},
+  { id: 22, quiz_id: 3, title: '「ヨガブロック」の主な使用目的は何？'},
+  { id: 23, quiz_id: 3, title: 'ヨガのポーズで、床に座り両足を広げて伸ばすポーズは何でしょうか？' },
+  { id: 24, quiz_id: 3, title: 'ヨガの言葉で、個々の義務や責任を指すものは何ですか？'}
 ]
 
 questions.each do |question|
@@ -86,13 +91,55 @@ answers = [
   { id: 15, question_id: 4, content: "太陽", correct: true },
   { id: 16, question_id: 4, content: "水", correct: false },
 
-  # ヨガ検定10級：3問目:ヨガのポーズで、足を広げて手を天井に向けて仰向けになり、リラックスするポーズは何でしょうか？
+  # ヨガ検定10級：5問目:ヨガのポーズで、足を広げて手を天井に向けて仰向けになり、リラックスするポーズは何でしょうか？
   { id: 17, question_id: 5, content: "ねむれライオン", correct: false},
   { id: 18, question_id: 5, content: "大の字", correct: false},
   { id: 19, question_id: 5, content: "ヨガチャッカファイヤー", correct: false},
-  { id: 20, question_id: 5, content: "シャバーサナ", correct: true}
+  { id: 20, question_id: 5, content: "シャバーサナ", correct: true},
+
+
+  #ヨガ検定9級：1問目:ヨガの「八支則」の一つではないものは？
+  { id: 21, question_id: 10, content: "アサナ（ポーズ）", correct: false},
+  { id: 22, question_id: 10, content: "プラナヤマ（呼吸法）", correct: false},
+  { id: 23, question_id: 10, content: "サムラダイ（チョコレート食べ放題）", correct: true},
+  { id: 24, question_id: 10, content: "ダルマ（倫理的な行動）", correct: true},
+
+  #ヨガ検定9級：2問目:ヨガのクラスで「ナマステ」と言う意味は何？
+  { id: 25, question_id: 11, content: "こんにちは", correct: false},
+  { id: 26, question_id: 11, content: "さようなら", correct: false},
+  { id: 27, question_id: 11, content: "今日のクラスはここまでです", correct: false},
+  { id: 28, question_id: 11, content: "私の魂があなたの魂を尊敬します", correct: true},
+
+  #ヨガ検定9級：3問目:「シャヴァーサナ」で重要なのは？
+  { id: 29, question_id: 12, content: "完全なリラックス", correct: true},
+  { id: 30, question_id: 12, content: "静かに眠りにつくこと", correct: false},
+  { id: 31, question_id: 12, content: "他の人を起こさないようにすること", correct: false},
+  { id: 32, question_id: 12, content: "瞑想中に夢を見ること", correct: true},
+
+  #ヨガ検定9級：4問目:ヨガのクラスでの「深呼吸」の目的は何？
+  { id: 33, question_id: 13, content: "他の人より大きな音を出すため", correct: false},
+  { id: 34, question_id: 13, content: "心と身体を結びつけ、リラックスするため", correct: true},
+  { id: 35, question_id: 13, content: "肺を鍛えるため", correct: false},
+  { id: 36, question_id: 13, content: "空気をより多く消費するため", correct: true},
+
+  #ヨガ検定9級：5問目:ヨガのポーズで「ツリーポーズ」が象徴するのは何？
+  { id: 37, question_id: 14, content: "自然への敬愛", correct: false},
+  { id: 38, question_id: 14, content: "木のように静かに立つ強さ", correct: true},
+  { id: 39, question_id: 14, content: "枝のように広がるバランス感覚", correct: false},
+  { id: 40, question_id: 14, content: "秋に葉が落ちる様子", correct: true}
 ]
+
 
 answers.each do |answer|
   Answer.create!(answer)
+end
+
+yoga_poses = [
+  { id: 1, japanese_name: '戦士のポーズⅡ', sanskrit_name: 'ヴィーラバッドラーサナⅡ', number: 1, level: 'beginner', illustration: '/yoga_pose/eiyuu2.png', how_to_read: 'Warrior Ⅱ Pose', explanation: 'バランスを養うポーズ' },
+  { id: 2, japanese_name: 'ラクダのポーズ', sanskrit_name: 'ウストラーサナ', number: 2, level: 'intermediate', illustration: '/yoga_pose/rakuda.png', how_to_read: 'Camel Pose', explanation: '背中と胸を開くポーズ' },
+  { id: 3, japanese_name: '平和な戦士のポーズ', sanskrit_name: 'リバースウォーリア', number: 3, level: 'intermediate', illustration: '/yoga_pose/reverse_warrior_non_back.png', how_to_read: 'Reverse Warrior', explanation: '体側のストレッチを行うポーズ' }
+]
+
+yoga_poses.each do |yoga_pose|
+  YogaPose.create!(yoga_pose)
 end
