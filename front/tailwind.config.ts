@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        footer: '#b1b1b130', // この行を追加
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -16,5 +19,6 @@ const config: Config = {
     },
   },
   plugins: [],
+
 }
 export default config

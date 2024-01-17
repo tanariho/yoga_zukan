@@ -17,9 +17,6 @@ export default function Home() {
 						alt=""
 						style={{ borderRadius: '50px' }}
 					/>
-					<div>
-						<Logout />
-					</div>
 				</div>
 			) : (
 				<Login />

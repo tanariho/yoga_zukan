@@ -16,10 +16,4 @@ export default async function Home() {
 
   const userId = await fetchUserId(session.user.email)
   console.log(userId)
-
-  return (
-    <>
-      <div>user_id: {userId}</div>
-    </>
-  );
 }
