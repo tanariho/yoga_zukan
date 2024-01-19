@@ -3,6 +3,7 @@ import React from "react";
 import useSWR from "swr";
 import { fetcher } from "../_common/utils";
 import Link from "next/link";
+import { Card } from "primereact/card";
 
 interface Answer {
   id: number;
@@ -31,12 +32,16 @@ const QuizPage: React.FC = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container grid grid-cols-3 gap-6 mx-auto mb-10 mt-10">
         {data.map((quiz: any) => (
-          <Link href={`/question/${quiz.id}`}key={quiz.id}>
-            <div>
+          <Link href={`/question/${quiz.id}`} key={quiz.id}>
+            <Card
+              className="flex justify-center items-center text-center  h-28 mx-auto 
+              rounded-lg shadow-lg hover:bg-neutral-100 active:bg-neutral-200 hover:scale-105 
+              transition transform"
+            >
               <h3>{quiz.title}</h3>
-            </div>
+            </Card>
           </Link>
         ))}
       </div>

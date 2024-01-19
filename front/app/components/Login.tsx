@@ -12,7 +12,7 @@ export default function Login() {
     return (
       <div>
         <button onClick={() => signIn("google", {}, { prompt: "login" })}>
-          Googleで新規登録・ログイン
+        <span className = "pi pi-sign-in" style={{ color: '#e2a55e' }}></span> Googleで新規登録・ログイン
         </button>
       </div>
     );
@@ -22,19 +22,8 @@ export default function Login() {
     return (
       <>
         <div className = "mb-4">
-          <button onClick={() => signOut()}>ログアウト</button>
+          <button onClick={() => signOut()}><span className = "pi pi-sign-out" style={{ color: '#96aa9a' }}></span> ログアウト</button>
 				</div>
-				{/* <div>
-          <p>ようこそ、{session.user?.name}さん</p>
-          <img
-            src={session.user?.image ?? ``}
-            alt=""
-            style={{ borderRadius: "50px" }}
-						width = {80}
-						height = {80}
-						className = ""
-          />
-        </div> */}
       </>
     );
   }

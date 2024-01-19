@@ -4,8 +4,10 @@ import React from "react";
 import { useState } from "react";
 import Image from "next/image";
 import Login from "./Login";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
   const [openMenu, setOpenMenu] = useState(false);
 
   const handleMenuOpen = () => {
@@ -13,14 +15,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App border-b">
       <div className="container mx-auto px-3">
         <header className="flex justify-between py-3">
-          <Link href = '/' className="transition transform hover:scale-105">
+          <Link href="/" className="transition transform hover:scale-105">
             <Image
               src="/yoga_zukan_logo.png"
-              width={200}
-              height={100}
+              width={160}
+              height={80}
               alt="ヨガ図鑑"
               style={{ width: "auto", height: "auto" }}
             />
@@ -30,7 +32,7 @@ const Navbar = () => {
           <button
             onClick={handleMenuOpen}
             type="button"
-            className="z-10 space-y-2"
+            className="z-10 space-y-2 transition transform hover:scale-105"
           >
             <div
               className={
@@ -62,18 +64,44 @@ const Navbar = () => {
             }
           >
             <ul className="mt-6">
-              <li className="p-2 cursor-pointer">
-                <Link href="/">トップページ</Link>
+              <li className="p-2 cursor-pointer mb-10">
+                <Link href="/">
+                  <i className="pi pi-desktop" style={{ color: "#96aa9a" }}></i>{" "}
+                  トップページ
+                </Link>
               </li>
               <li className="p-2 cursor-pointer">
-                <Link href="/quiz">ヨガ検定</Link>
+                <Link href="/quiz">
+                  <i className="pi pi-book" style={{ color: "#96aa9a" }}></i>{" "}
+                  ヨガ検定
+                </Link>
               </li>
               <li className="p-2 cursor-pointer">
-                <Link href="/">ヨガタイマー</Link>
+                <Link href="/">
+                  <i className="pi pi-clock" style={{ color: "#96aa9a" }}></i>{" "}
+                  ヨガタイマー
+                </Link>
               </li>
-              <li className="p-2 cursor-pointer">
-                <Link href="/">ジャーナリング瞑想</Link>
+              <li className="p-2 cursor-pointer mb-10">
+                <Link href="/">
+                  <i className="pi pi-pencil" style={{ color: "#96aa9a" }}></i>{" "}
+                  ジャーナリング瞑想
+                </Link>
               </li>
+              {status === "authenticated" && (
+                <>
+                  <li className="p-2 cursor-pointer">
+                    <Link href="/">
+                      <i className="pi pi-user" style={{ color: "#96aa9a" }}></i> マイページ
+                    </Link>
+                  </li>
+                  <li className="p-2 cursor-pointer mb-5">
+                    <Link href="/">
+                      <i className="pi pi-search" style={{ color: "#96aa9a" }}></i> ヨガ図鑑
+                    </Link>
+                  </li>
+                </>
+              )}
               <li className="p-2 cursor-pointer">
                 <Login />
               </li>
