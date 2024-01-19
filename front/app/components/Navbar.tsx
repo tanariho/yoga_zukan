@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="App border-b">
+    <div className="App">
       <div className="container mx-auto px-3">
         <header className="flex justify-between py-3">
           <Link href="/" className="transition transform hover:scale-105">
@@ -32,7 +32,7 @@ const Navbar = () => {
           <button
             onClick={handleMenuOpen}
             type="button"
-            className="z-10 space-y-2 transition transform hover:scale-105"
+            className="z-30 space-y-2 transition transform hover:scale-105"
           >
             <div
               className={
@@ -59,11 +59,11 @@ const Navbar = () => {
           <nav
             className={
               openMenu
-                ? "text-center fixed bg-slate-50 opacity-80 right-0 top-0 w-4/12 h-screen flex flex-col justify-start pt-8 px-3 ease-linear duration-300"
-                : "fixed right-[-100%] ease-linear duration-300"
+                ? "text-center fixed bg-beige opacity-95 right-0 top-0 w-3/12 h-screen flex flex-col justify-start pt-8 px-3 ease-linear duration-300 z-20"
+                : "fixed right-[-100%] ease-linear duration-300 z-20"
             }
           >
-            <ul className="mt-6">
+            <ul className="mt-20 text-left mx-auto">
               <li className="p-2 cursor-pointer mb-10">
                 <Link href="/">
                   <i className="pi pi-desktop" style={{ color: "#96aa9a" }}></i>{" "}

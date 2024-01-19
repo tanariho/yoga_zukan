@@ -32,7 +32,7 @@ const QuizPage: React.FC = () => {
 
   return (
     <>
-      <div className="container grid grid-cols-3 gap-6 mx-auto mb-10 mt-10">
+      <div className="container grid grid-cols-3 w-8/12 gap-6 mx-auto mb-10 mt-10">
         {data.map((quiz: any) => (
           <Link href={`/question/${quiz.id}`} key={quiz.id}>
             <Card
