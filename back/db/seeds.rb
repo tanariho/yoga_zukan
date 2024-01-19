@@ -42,11 +42,11 @@ end
 
 questions = [
   # ヨガ検定10級(トライアル)
-  { id: 1, quiz_id: 1,title: 'ヨガの起源はどこの国ですか？'},
-  { id: 2, quiz_id: 1,title: 'ヨガの練習に使用される敷物のことを何と呼びますか？'},
-  { id: 3, quiz_id: 1,title: 'ヨガの哲学で、心の浄化を促すための「心の平穏」を意味する言葉は何ですか？'},
-  { id: 4, quiz_id: 1,title: '太陽礼拝（サン・サラスティ）は、何を讃えるために行われるヨガの練習ですか？'},
-  { id: 5, quiz_id: 1,title: 'ヨガのポーズで、足を広げて手を天井に向けて仰向けになり、リラックスするポーズは何でしょうか？'},
+  { id: 1, quiz_id: 1,title: 'このアプリにはさまざまなヨガのコンテンツが用意されています。興味があるものを選んでください。'},
+  { id: 2, quiz_id: 1,title: 'そのヨガのコンテンツを体験すれば、ヨガのポーズがもらえます。どのポーズが欲しいですか？'},
+  { id: 3, quiz_id: 1,title: 'ヨガのポーズを集めて何を完成させますか？'},
+  { id: 4, quiz_id: 1,title: 'このアプリで、ヨガ図鑑を完成させましょう！'},
+  { id: 5, quiz_id: 1,title: 'ヨガを学んで体験して、ヨガ図鑑を完成させますか？'},
   # ヨガ検定9級
   { id: 10, quiz_id: 2, title: 'ヨガの「八支則」の一つではないものは？'},
   { id: 11, quiz_id: 2, title: 'ヨガのクラスで「ナマステ」と言う意味は何？'},
@@ -67,35 +67,35 @@ questions.each do |question|
 end
 
 answers = [
-  # ヨガ検定10級：１問目:ヨガの起源はどこの国ですか？
-  { id: 1, question_id: 1, content: "インド", correct: true },
-  { id: 2, question_id: 1, content: "中国", correct: false },
-  { id: 3, question_id: 1, content: "日本", correct: false },
-  { id: 4, question_id: 1, content: "アメリカ", correct: false},
+  # ヨガ検定10級：１問目:このアプリにはさまざまなヨガのコンテンツが用意されています。興味があるものを選んでください。
+  { id: 1, question_id: 1, content: "ヨガ検定", correct: true },
+  { id: 2, question_id: 1, content: "ヨガタイマー", correct: false },
+  { id: 3, question_id: 1, content: "ジャーナリング瞑想", correct: false },
+  { id: 4, question_id: 1, content: "ぜんぶ", correct: true},
 
-  # ヨガ検定10級：2問目:ヨガの練習に使用される敷物のことを何と呼びますか？
-  { id: 5, question_id: 2, content: "ヨガブロック", correct: false },
-  { id: 6, question_id: 2, content: "ヨガマット", correct: true },
-  { id: 7, question_id: 2, content: "ヨガストラップ", correct:false },
-  { id: 8, question_id: 2, content: "ヨガの魔法の絨毯", correct:false },
+  # ヨガ検定10級：2問目:そのヨガのコンテンツを体験すれば、ヨガのポーズがもらえます。どのポーズが欲しいですか？
+  { id: 5, question_id: 2, content: "シャバーサナ", correct: true },
+  { id: 6, question_id: 2, content: "戦士のポーズ", correct: true },
+  { id: 7, question_id: 2, content: "ダウンドッグ", correct:true },
+  { id: 8, question_id: 2, content: "チャイルドポーズ", correct:true },
 
-  # ヨガ検定10級：3問目:ヨガの哲学で、心の浄化を促すための「心の平穏」を意味する言葉は何ですか？
-  { id: 9, question_id: 3, content: "サトシ", correct:false },
-  { id: 10, question_id: 3, content: "ピカチュウ", correct: false },
-  { id: 11, question_id: 3, content: "シャンティ", correct:true },
-  { id: 12, question_id: 3, content: "ヒサージュー", correct:false },
+  # ヨガ検定10級：3問目:ヨガのポーズを集めて何を完成させますか？
+  { id: 9, question_id: 3, content: "ヨガ雑誌", correct:false },
+  { id: 10, question_id: 3, content: "ポケモン図鑑", correct: false },
+  { id: 11, question_id: 3, content: "ヨガ図鑑", correct:true },
+  { id: 12, question_id: 3, content: "ヨガみかん", correct:false },
 
-  # ヨガ検定10級：4問目:太陽礼拝（サン・サラスティ）は、何を讃えるために行われるヨガの練習ですか？
-  { id: 13, question_id: 4, content: "地球", correct: false },
-  { id: 14, question_id: 4, content: "空気", correct: false },
-  { id: 15, question_id: 4, content: "太陽", correct: true },
-  { id: 16, question_id: 4, content: "水", correct: false },
+  # ヨガ検定10級：4問目:このアプリで、ヨガ図鑑を完成させましょう！
+  { id: 13, question_id: 4, content: "喜んで！", correct: true },
+  { id: 14, question_id: 4, content: "おー！", correct: true },
+  { id: 15, question_id: 4, content: "ナマステ", correct: true },
+  { id: 16, question_id: 4, content: "YES", correct: true },
 
-  # ヨガ検定10級：5問目:ヨガのポーズで、足を広げて手を天井に向けて仰向けになり、リラックスするポーズは何でしょうか？
-  { id: 17, question_id: 5, content: "ねむれライオン", correct: false},
-  { id: 18, question_id: 5, content: "大の字", correct: false},
-  { id: 19, question_id: 5, content: "ヨガチャッカファイヤー", correct: false},
-  { id: 20, question_id: 5, content: "シャバーサナ", correct: true},
+  # ヨガ検定10級：5問目:ヨガ図鑑を完成させますか？
+  { id: 17, question_id: 5, content: "はい", correct: true},
+  # { id: 18, question_id: 5, content: "大の字", correct: false},
+  # { id: 19, question_id: 5, content: "ヨガチャッカファイヤー", correct: false},
+  # { id: 20, question_id: 5, content: "シャバーサナ", correct: true},
 
 
   #ヨガ検定9級：1問目:ヨガの「八支則」の一つではないものは？
