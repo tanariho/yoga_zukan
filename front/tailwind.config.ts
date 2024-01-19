@@ -10,6 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         footer: '#b1b1b130', // この行を追加
+        orange: '#e2a55e',
+        gleen: '#96aa9a',
+        beige: '#e5dfd8'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
