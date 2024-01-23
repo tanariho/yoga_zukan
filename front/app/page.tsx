@@ -1,29 +1,25 @@
 'use client'
 import { useSession } from 'next-auth/react';
-import Login from './components/Login';
-import Logout from './components/Logout';
 
 
 
 export default function Home() {
 	const { data: session, status } = useSession();
+
+	if (status !== "authenticated") {
 	return (
-		<div>
-			{status === 'authenticated' ? (
-				<div>
-					<p>ようこそ、{session.user?.name}さん</p>
-					<img
-						src={session.user?.image ?? ``}
-						alt=""
-						style={{ borderRadius: '50px' }}
-					/>
-					<div>
-						<Logout />
-					</div>
-				</div>
-			) : (
-				<Login />
-			)}
+		<div className = "text-center mt-10 font-bold">
+			ログイン前のトップページです
 		</div>
 	);
+}
+
+if (status == "authenticated") {
+	return (
+		<div className = "text-center mt-10 font-bold">
+			ログイン後のトップページです
+		</div>
+	);
+}
+
 }
