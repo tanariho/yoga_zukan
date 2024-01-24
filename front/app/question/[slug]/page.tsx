@@ -13,7 +13,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import fetchUserId from "@/app/components/fetcher/user/FetchUser";
 
-export default function ExampleClientComponent() {
+export default function YogaQuiz() {
   const { data: session, status } = useSession();
   const params = useParams();
   const slug = params.slug;
@@ -22,7 +22,7 @@ export default function ExampleClientComponent() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [submitted, setSubmitted] = useState(false);
-  const [userId, setUserId] = useState<number | null>(null);
+  // const [userId, setUserId] = useState<number | null>(null);
   const [yogaPose, setYogaPose] = useState<YogaPose | null>(null);
   const css = `
         .orange {
@@ -38,23 +38,16 @@ export default function ExampleClientComponent() {
       }
     `;
 
-  useEffect(() => {
-    const fetchCurrentUserId = async () => {
-      if (session && session.user && session.user.email) {
-        try {
-          const UserId = await fetchUserId(session.user.email);
-          console.log("取得されたユーザーID:", UserId);
-          setUserId(UserId);
-        } catch (error) {
-          console.error("ユーザーIDの取得に失敗しました:", error);
-        }
-      }
-    };
+  const { data: userId, error: userIdError } = useSWR(
+    () =>
+      session?.user?.email ? `${session.user.email}` : null,
+    fetchUserId
+  );
 
-    if (session) {
-      fetchCurrentUserId();
-    }
-  }, [session]);
+  if (userIdError) {
+    console.error("ユーザーIDの取得に失敗しました:", userIdError);
+  }
+
 
   const handleAnswerChange = (answerId: any) => {
     const question = data?.[currentQuestionIndex];
@@ -124,9 +117,10 @@ export default function ExampleClientComponent() {
     }
   }, [submitted, userId, slug]);
 
-  if (error) return <div>An error has occurred.</div>;
-  if (!data) return <div>Loading...</div>;
-  if (!data || !data || data.length === 0) return <div>Loading...</div>;
+  if (error || userIdError) return <div>An error has occurred.</div>;
+  if (!data || !userId) return <div>Loading...</div>;
+
+  if (!data || !data || data.length === 0) return <div>この問題は未実装です</div>;
 
   const currentQuestion = data[currentQuestionIndex];
   if (!currentQuestion) return <div>Question not found.</div>;
@@ -147,15 +141,18 @@ export default function ExampleClientComponent() {
         >
           <div className="flex justify-center items-center text-center mx-auto mt-10 gap-4">
             {currentQuestion.answers.map((answer: Answer) => (
-              <div key={answer.id} className="p-field-radiobutton ">
+              <div key={answer.id} className="p-field-radiobutton flex hover:scale-105">
                 <RadioButton
                   inputId={`answer${answer.id}`}
                   name="answer"
                   value={answer.id}
                   onChange={(e) => handleAnswerChange(e.value)}
                   disabled={submitted}
+                  className="flex"
                 />
-                <label htmlFor={`answer${answer.id}`}>{answer.content}</label>
+                <label htmlFor={`answer${answer.id}`} className="flex">
+                  {answer.content}
+                </label>
               </div>
             ))}
           </div>
@@ -189,8 +186,16 @@ export default function ExampleClientComponent() {
           </Card>
           <div className="flex justify-center mb-10">
             <Link href="/">
-              <Button style={{ backgroundColor: '#e2a55e', color: 'white', border: 'none' }}
-              className = "p-button-warning">ヨガ図鑑を見に行く</Button>
+              <Button
+                style={{
+                  backgroundColor: "#e2a55e",
+                  color: "white",
+                  border: "none",
+                }}
+                className="p-button-warning"
+              >
+                ヨガ図鑑を見に行く
+              </Button>
             </Link>
           </div>
         </>
