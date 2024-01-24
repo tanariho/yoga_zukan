@@ -64,25 +64,25 @@ const Navbar = () => {
             }
           >
             <ul className="mt-20 text-left mx-auto">
-              <li className="p-2 cursor-pointer mb-10">
+              <li className="p-2 cursor-pointer mb-10  hover:scale-105">
                 <Link href="/">
                   <i className="pi pi-desktop" style={{ color: "#96aa9a" }}></i>{" "}
                   トップページ
                 </Link>
               </li>
-              <li className="p-2 cursor-pointer">
+              <li className="p-2 cursor-pointer  hover:scale-105">
                 <Link href="/quiz">
                   <i className="pi pi-book" style={{ color: "#96aa9a" }}></i>{" "}
                   ヨガ検定
                 </Link>
               </li>
-              <li className="p-2 cursor-pointer">
+              <li className="p-2 cursor-pointer  hover:scale-105">
                 <Link href="/">
                   <i className="pi pi-clock" style={{ color: "#96aa9a" }}></i>{" "}
                   ヨガタイマー
                 </Link>
               </li>
-              <li className="p-2 cursor-pointer mb-10">
+              <li className="p-2 cursor-pointer mb-10  hover:scale-105">
                 <Link href="/">
                   <i className="pi pi-pencil" style={{ color: "#96aa9a" }}></i>{" "}
                   ジャーナリング瞑想
@@ -90,12 +90,12 @@ const Navbar = () => {
               </li>
               {status === "authenticated" && (
                 <>
-                  <li className="p-2 cursor-pointer">
-                    <Link href="/">
+                  <li className="p-2 cursor-pointer  hover:scale-105">
+                    <Link href="/my_page">
                       <i className="pi pi-user" style={{ color: "#96aa9a" }}></i> マイページ
                     </Link>
                   </li>
-                  <li className="p-2 cursor-pointer mb-5">
+                  <li className="p-2 cursor-pointer mb-5  hover:scale-105">
                     <Link href="/">
                       <i className="pi pi-search" style={{ color: "#96aa9a" }}></i> ヨガ図鑑
                     </Link>
