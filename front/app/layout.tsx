@@ -26,15 +26,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
-          <PrimeReactProvider>
             <NextAuthProvider>
+          <PrimeReactProvider>
               <main className="flex-grow">
                 <Navbar />
                 {children}
               </main>
               <Footer />
-            </NextAuthProvider>
           </PrimeReactProvider>
+            </NextAuthProvider>
         </div>
       </body>
     </html>
