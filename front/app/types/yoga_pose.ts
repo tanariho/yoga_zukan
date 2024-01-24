@@ -1,5 +1,5 @@
 interface YogaPose {
- id: string
+ id: number
  title: string;
  japanese_name: string;
  sanskrit_name: string;

@@ -8,8 +8,6 @@ import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primeicons/primeicons.css";
 
-
-
 const inter = Inconsolata({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,15 +24,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
-            <NextAuthProvider>
-          <PrimeReactProvider>
-              <main className="flex-grow">
-                <Navbar />
-                {children}
-              </main>
-              <Footer />
-          </PrimeReactProvider>
-            </NextAuthProvider>
+          <NextAuthProvider>
+            <PrimeReactProvider>
+                <main className="flex-grow">
+                  <Navbar />
+                  {children}
+                </main>
+                <Footer />
+            </PrimeReactProvider>
+          </NextAuthProvider>
         </div>
       </body>
     </html>
