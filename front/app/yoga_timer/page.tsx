@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Knob } from "primereact/knob";
 import { Button } from "primereact/button";
@@ -6,17 +6,19 @@ import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import fetchUserId from "../components/fetcher/user/FetchUser";
 import axios from "axios";
+import { AxiosError } from "axios";
 import Image from "next/image";
-import Link from "next/link";
 import { Card } from "primereact/card";
+import YogaTimerBackBuntton from "../components/yoga_timer/BackButton";
 
 export default function YogaTimer() {
   const [isClient, setIsClient] = useState(false);
   const [yogaPose, setYogaPose] = useState<YogaPose | null>(null);
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(1800);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<number | undefined>(undefined);
   const isRunningRef = useRef(isRunning);
+  const [noMorePoses, setNoMorePoses] = useState(false);
 
   const { data: session } = useSession();
   const { data: userId, error: userIdError } = useSWR(
@@ -67,16 +69,27 @@ export default function YogaTimer() {
   const onTimerComplete = async () => {
     if (userId) {
       try {
-        const response = await axios.post("http://localhost:3000/api/v1/yoga_timers", { user_id: userId });
+        const response = await axios.post(
+          "http://localhost:3000/api/v1/yoga_timers",
+          { user_id: userId }
+        );
         const { assigned_pose } = response.data;
-        console.log(assigned_pose)
+        console.log(assigned_pose);
         if (assigned_pose) {
           setYogaPose(assigned_pose);
+          setNoMorePoses(false);
         } else {
-          alert("すでにすべてのポーズを制覇しています！");
+          setNoMorePoses(true);
         }
       } catch (error) {
         console.error("ポーズの追加に失敗しました", error);
+        if (axios.isAxiosError(error) && error.response) {
+          if (error.response.status === 404) {
+            setNoMorePoses(true);
+          }
+        } else {
+          alert("予期せぬエラーが発生しました。");
+        }
       }
     }
   };
@@ -89,10 +102,16 @@ export default function YogaTimer() {
     setIsRunning(false);
   };
 
-  const formatTime = (time:number) => {
+  const resetTimer = () => {
+    setTimeLeft(1800);
+  };
+
+  const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    return `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   if (userIdError) {
@@ -104,13 +123,26 @@ export default function YogaTimer() {
   }
 
   return (
-    <div className="mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-5" style={{ color: "#96aa9a" }}>
+    <div >
+      <div className="mx-auto">
+      <p
+        className="text-4xl font-bold text-center mb-5"
+        style={{ color: "#96aa9a" }}
+      >
         ヨガタイマー
-      </h1>
+      </p>
+      <p className="text-ss text-center text-gray-700">
+        タイマーをかけて30分間ヨガをしてみましょう！
+      </p>
+      <p className="text-ss text-center mb-2 text-gray-700">
+        達成するとポーズが一つもらえます
+      </p>
+      <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12" />
+      </div>
+
       {isClient && (
-        <div className="flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-          <div className="container mx-auto">
+        <div className="flex justify-content-center align-items-center mt-2 mb-20">
+          <div className="mx-auto">
             <div className="flex justify-center">
               <Knob
                 value={timeLeft}
@@ -122,7 +154,7 @@ export default function YogaTimer() {
                 max={1800}
                 step={1}
                 size={500}
-                disabled={isRunning}
+                disabled={!isRunning}
                 className="items-center"
               />
             </div>
@@ -130,23 +162,30 @@ export default function YogaTimer() {
               <Button onClick={startTimer} disabled={isRunning}>
                 開始
               </Button>
-              <Button onClick={stopTimer} disabled={!isRunning} className="ml-3">
+              <Button
+                onClick={stopTimer}
+                disabled={!isRunning}
+                className="ml-3"
+              >
                 停止
+              </Button>
+              <Button onClick={resetTimer} className="ml-3">
+                リセット
               </Button>
             </div>
           </div>
         </div>
       )}
       {yogaPose && (
-        <>
-          <div className="text-center mt-10 mb-5">
+        <div>
+          <div className="text-center mt-5 mb-5">
             <h1 className="font-medium">
               おめでとうございます！ヨガポーズ図鑑にポーズが増えました👏
             </h1>
           </div>
           <Card
             title={yogaPose.japanese_name}
-            className="mx-auto w-3/12  flex flex-col justify-center text-center mt-5 mb-10
+            className="mx-auto w-10/12  flex flex-col justify-center text-center mt-5 mb-10
           transition transform hover:scale-105 bg-white border-2 border-yellow-500
           rounded-lg shadow-lg h-200"
           >
@@ -163,21 +202,16 @@ export default function YogaTimer() {
               <p>{yogaPose.how_to_read}</p>
             </div>
           </Card>
-          <div className="flex justify-center mb-10">
-            <Link href="/yoga_zukan">
-              <Button
-                style={{
-                  backgroundColor: "#e2a55e",
-                  color: "white",
-                  border: "none",
-                }}
-                className="p-button-warning"
-              >
-                ヨガ図鑑を見に行く
-              </Button>
-            </Link>
+          <YogaTimerBackBuntton />
+        </div>
+      )}
+      {noMorePoses && (
+        <div className="mt-10">
+          <div className="mb-10  text-center font-bold text-xl text-lime-800">
+            すでにヨガポーズを制覇しているようです！！
           </div>
-        </>
+          <YogaTimerBackBuntton />
+        </div>
       )}
     </div>
   );

@@ -70,6 +70,8 @@ const Navbar = () => {
                   トップページ
                 </Link>
               </li>
+              {status === "authenticated" && (
+                <>
               <li onClick={handleMenuOpen} className="p-2 cursor-pointer  hover:scale-105">
                 <Link href="/quiz">
                   <i className="pi pi-book" style={{ color: "#96aa9a" }}></i>{" "}
@@ -88,10 +90,8 @@ const Navbar = () => {
                   ジャーナリング瞑想
                 </Link>
               </li>
-              {status === "authenticated" && (
-                <>
                   <li onClick={handleMenuOpen} className="p-2 cursor-pointer  hover:scale-105">
-                    <Link href="/">
+                    <Link href="/mypage">
                       <i className="pi pi-user" style={{ color: "#96aa9a" }}></i> マイページ
                     </Link>
                   </li>
