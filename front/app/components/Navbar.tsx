@@ -91,7 +91,7 @@ const Navbar = () => {
               {status === "authenticated" && (
                 <>
                   <li onClick={handleMenuOpen} className="p-2 cursor-pointer  hover:scale-105">
-                    <Link href="/">
+                    <Link href="/mypage">
                       <i className="pi pi-user" style={{ color: "#96aa9a" }}></i> マイページ
                     </Link>
                   </li>

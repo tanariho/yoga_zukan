@@ -26,7 +26,7 @@ export default function RootLayout({
         <div className="flex flex-col min-h-screen">
           <NextAuthProvider>
             <PrimeReactProvider>
-                <main className="flex-grow">
+                <main className="flex-grow" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                   <Navbar />
                   {children}
                 </main>
