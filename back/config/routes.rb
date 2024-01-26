@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :quiz_results, only: [:create]
       resources :users, only: [:index]
       resources :yoga_zukans, only: [:index]
+      resources :yoga_timers, only: [:create]
     end
   end
   post 'auth/:provider/callback', to: 'api/v1/users#create'
