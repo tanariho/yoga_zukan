@@ -9,6 +9,8 @@ import { Card } from "primereact/card";
 import { RadioButton } from "primereact/radiobutton";
 import { Button } from "primereact/button";
 import Link from "next/link";
+import YogaQuizBuntton from "@/app/components/yoga_quiz/Button";
+
 
 import { useSession } from "next-auth/react";
 import fetchUserId from "@/app/components/fetcher/user/FetchUser";
@@ -39,15 +41,13 @@ export default function YogaQuiz() {
     `;
 
   const { data: userId, error: userIdError } = useSWR(
-    () =>
-      session?.user?.email ? `${session.user.email}` : null,
+    () => (session?.user?.email ? `${session.user.email}` : null),
     fetchUserId
   );
 
   if (userIdError) {
     console.error("ユーザーIDの取得に失敗しました:", userIdError);
   }
-
 
   const handleAnswerChange = (answerId: any) => {
     const question = data?.[currentQuestionIndex];
@@ -99,10 +99,6 @@ export default function YogaQuiz() {
           if (assigned_pose) {
             // 割り当てられたヨガポーズを状態に保存し、画面に表示する
             setYogaPose(assigned_pose);
-          } else {
-            // ユーザーがすでにすべてのポーズを制覇している場合
-            alert("すでにポーズを制覇しています！");
-            // または、状態やUIコンポーネントを使用してメッセージを表示
           }
         }
       } catch (error) {
@@ -120,46 +116,68 @@ export default function YogaQuiz() {
   if (error || userIdError) return <div>An error has occurred.</div>;
   if (!data || !userId) return <div>Loading...</div>;
 
-  if (!data || !data || data.length === 0) return <div>この問題は未実装です</div>;
+  if (!data || !data || data.length === 0)
+    return <div>この問題は未実装です</div>;
 
   const currentQuestion = data[currentQuestionIndex];
   if (!currentQuestion) return <div>Question not found.</div>;
 
   return (
-    <>
-      {submitted && (
-        <div className="mx-auto text-center font-bold mt-10">
-          {calculateResult() ? "合格です！" : "不合格です。"}
+    <div>
+      {/* 提出済みかつ合格の場合のメッセージ */}
+      {submitted && calculateResult() && (
+        <div className="mx-auto text-center font-bold mt-10 text-3xl text-stone-500">
+          素晴らしい！合格です！
         </div>
       )}
-      <div className="mx-auto w-8/12 mt-5">
-        <Card
-          title={currentQuestion.title}
-          className="mx-auto  items-center p-5
-           rounded-3xl shadow-xl md:w-25rem h-80 bg-stone-50 border-2 border-yellow-500
-           flex flex-col justify-center text-center"
-        >
-          <div className="flex justify-center items-center text-center mx-auto mt-10 gap-4">
-            {currentQuestion.answers.map((answer: Answer) => (
-              <div key={answer.id} className="p-field-radiobutton flex hover:scale-105">
-                <RadioButton
-                  inputId={`answer${answer.id}`}
-                  name="answer"
-                  value={answer.id}
-                  onChange={(e) => handleAnswerChange(e.value)}
-                  disabled={submitted}
-                  className="flex"
-                />
-                <label htmlFor={`answer${answer.id}`} className="flex">
-                  {answer.content}
-                </label>
-              </div>
-            ))}
-          </div>
-        </Card>
-      </div>
-      {yogaPose && (
-        <>
+  
+      {/* 提出済みかつ不合格の場合のメッセージ */}
+      {submitted && !calculateResult() && (
+        <div>
+        <div className="mx-auto mb-20 text-center font-bold mt-10 text-3xl text-stone-500">
+          惜しいです！もう少し！
+        </div>
+        <YogaQuizBuntton />
+        </div>
+
+      )}
+  
+      {/* 問題 */}
+      {!submitted && (
+        <div className="mx-auto w-8/12 mt-5">
+          <Card
+            title={currentQuestion.title}
+            className="mx-auto items-center p-5
+            rounded-3xl shadow-xl md:w-25rem h-80 bg-stone-50 border-2 border-yellow-500
+            flex flex-col justify-center text-center"
+          >
+            <div className="flex justify-center items-center text-center mx-auto mt-10 gap-4">
+              {currentQuestion.answers.map((answer: Answer) => (
+                <div
+                  key={answer.id}
+                  className="p-field-radiobutton flex hover:scale-105"
+                >
+                  <RadioButton
+                    inputId={`answer${answer.id}`}
+                    name="answer"
+                    value={answer.id}
+                    onChange={(e) => handleAnswerChange(e.value)}
+                    disabled={submitted}
+                    className="flex"
+                  />
+                  <label htmlFor={`answer${answer.id}`} className="flex">
+                    {answer.content}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+      )}
+        
+      {/* 提出済みで合格、かつヨガポーズがある場合 */}
+      {submitted && calculateResult() && yogaPose && (
+        <div>
           <div className="text-center mt-10 mb-5">
             <h1 className="font-medium">
               おめでとうございます！ヨガポーズ図鑑にポーズが増えました👏
@@ -168,8 +186,8 @@ export default function YogaQuiz() {
           <Card
             title={yogaPose.japanese_name}
             className="mx-auto w-3/12  flex flex-col justify-center text-center mt-5 mb-10
-          transition transform hover:scale-105 bg-white border-2 border-yellow-500
-          rounded-lg shadow-lg h-200"
+            transition transform hover:scale-105 bg-white border-2 border-yellow-500
+            rounded-lg shadow-lg h-200"
           >
             <div className="mx-auto mt-3 mb-3">
               <Image
@@ -184,22 +202,21 @@ export default function YogaQuiz() {
               <p>{yogaPose.how_to_read}</p>
             </div>
           </Card>
-          <div className="flex justify-center mb-10">
-            <Link href="/yoga_zukan">
-              <Button
-                style={{
-                  backgroundColor: "#e2a55e",
-                  color: "white",
-                  border: "none",
-                }}
-                className="p-button-warning"
-              >
-                ヨガ図鑑を見に行く
-              </Button>
-            </Link>
-          </div>
-        </>
+          <YogaQuizBuntton/>
+        </div>
       )}
-    </>
+  
+      {/* 提出済みで合格だがヨガポーズがない場合 */}
+      {submitted && calculateResult() && !yogaPose && (
+        <div>
+        <div className="mt-10 mb-10  text-center font-bold text-xl text-lime-800">
+          すでにヨガポーズを制覇しているようです！！
+        </div>
+        <YogaQuizBuntton/>
+        </div>
+        
+      )}
+  
+    </div>
   );
-}
+}  
