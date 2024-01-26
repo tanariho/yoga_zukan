@@ -185,7 +185,7 @@ export default function YogaQuiz() {
             </div>
           </Card>
           <div className="flex justify-center mb-10">
-            <Link href="/">
+            <Link href="/yoga_zukan">
               <Button
                 style={{
                   backgroundColor: "#e2a55e",
