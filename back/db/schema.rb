@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_15_043304) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_25_060751) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_15_043304) do
     t.index ["number", "japanese_name"], name: "index_yoga_poses_on_number_and_japanese_name", unique: true
   end
 
+  create_table "yoga_timers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "hour"
+    t.integer "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_yoga_timers_on_user_id"
+  end
+
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quiz_results", "quizzes"
@@ -104,4 +113,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_15_043304) do
   add_foreign_key "user_answers", "users"
   add_foreign_key "user_yoga_poses", "users"
   add_foreign_key "user_yoga_poses", "yoga_poses"
+  add_foreign_key "yoga_timers", "users"
 end
