@@ -37,22 +37,22 @@ const Navbar = () => {
             <div
               className={
                 openMenu
-                  ? "w-8 h-0.5 bg-gray-600 translate-y-2.5 rotate-45 transition duration-500 ease-in-out"
-                  : "w-8 h-0.5 bg-gray-600 transition duration-500 ease-in-out"
+                  ? "w-8 h-0.5 bg-yellow-600 translate-y-2.5 rotate-45 transition duration-500 ease-in-out"
+                  : "w-8 h-0.5  bg-lime-700 transition duration-500 ease-in-out"
               }
             />
             <div
               className={
                 openMenu
                   ? "opacity-0 transition duration-500 ease-in-out"
-                  : "w-8 h-0.5 bg-gray-600 transition duration-500 ease-in-out"
+                  : "w-8 h-0.5 bg-lime-700 transition duration-500 ease-in-out"
               }
             />
             <div
               className={
                 openMenu
-                  ? "w-8 h-0.5 bg-gray-600 -rotate-45 transition duration-500 ease-in-out"
-                  : "w-8 h-0.5 bg-gray-600 transition duration-500 ease-in-out"
+                  ? "w-8 h-0.5  bg-yellow-600 -rotate-45 transition duration-500 ease-in-out"
+                  : "w-8 h-0.5 bg-lime-700 transition duration-500 ease-in-out"
               }
             />
           </button>
@@ -64,25 +64,25 @@ const Navbar = () => {
             }
           >
             <ul className="mt-20 text-left mx-auto">
-              <li className="p-2 cursor-pointer mb-10">
+              <li onClick={handleMenuOpen} className="p-2 cursor-pointer mb-10  hover:scale-105">
                 <Link href="/">
                   <i className="pi pi-desktop" style={{ color: "#96aa9a" }}></i>{" "}
                   トップページ
                 </Link>
               </li>
-              <li className="p-2 cursor-pointer">
+              <li onClick={handleMenuOpen} className="p-2 cursor-pointer  hover:scale-105">
                 <Link href="/quiz">
                   <i className="pi pi-book" style={{ color: "#96aa9a" }}></i>{" "}
                   ヨガ検定
                 </Link>
               </li>
-              <li className="p-2 cursor-pointer">
-                <Link href="/">
+              <li onClick={handleMenuOpen} className="p-2 cursor-pointer  hover:scale-105">
+                <Link href="/yoga_timer">
                   <i className="pi pi-clock" style={{ color: "#96aa9a" }}></i>{" "}
                   ヨガタイマー
                 </Link>
               </li>
-              <li className="p-2 cursor-pointer mb-10">
+              <li onClick={handleMenuOpen} className="p-2 cursor-pointer mb-10  hover:scale-105">
                 <Link href="/">
                   <i className="pi pi-pencil" style={{ color: "#96aa9a" }}></i>{" "}
                   ジャーナリング瞑想
@@ -90,13 +90,13 @@ const Navbar = () => {
               </li>
               {status === "authenticated" && (
                 <>
-                  <li className="p-2 cursor-pointer">
+                  <li onClick={handleMenuOpen} className="p-2 cursor-pointer  hover:scale-105">
                     <Link href="/">
                       <i className="pi pi-user" style={{ color: "#96aa9a" }}></i> マイページ
                     </Link>
                   </li>
-                  <li className="p-2 cursor-pointer mb-5">
-                    <Link href="/">
+                  <li onClick={handleMenuOpen} className="p-2 cursor-pointer mb-5  hover:scale-105">
+                    <Link href="/yoga_zukan">
                       <i className="pi pi-search" style={{ color: "#96aa9a" }}></i> ヨガ図鑑
                     </Link>
                   </li>
