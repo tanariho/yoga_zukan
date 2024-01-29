@@ -10,6 +10,7 @@ import { RadioButton } from "primereact/radiobutton";
 import { Button } from "primereact/button";
 import Link from "next/link";
 import YogaQuizBuntton from "@/app/components/yoga_quiz/Button";
+import { railsApiUrl } from '@/app/config';
 
 
 import { useSession } from "next-auth/react";
@@ -19,7 +20,7 @@ export default function YogaQuiz() {
   const { data: session, status } = useSession();
   const params = useParams();
   const slug = params.slug;
-  const url = `http://localhost:3000/api/v1/quizzes/${slug}`;
+  const url = `${railsApiUrl}/api/v1/quizzes/${slug}`;
   const { data, error } = useSWR<Question[]>(url, fetcher);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
@@ -83,7 +84,7 @@ export default function YogaQuiz() {
       console.log(passed);
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/quiz_results",
+          `${railsApiUrl}/api/v1/quiz_results`,
           {
             user_id: userId,
             quiz_id: slug,

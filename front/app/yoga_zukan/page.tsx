@@ -12,6 +12,7 @@ import { Card } from "primereact/card";
 import { Divider } from "primereact/divider";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
+import { railsApiUrl } from "../config";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -29,7 +30,7 @@ export default function Home() {
   const userIdUrl = session?.user?.email ? `${session.user.email}` : null;
   const { data: userId, error: userIdError } = useSWR(userIdUrl, fetchUserId);
   const { data: yogaPoses, error } = useSWR(
-    userId ? `http://localhost:3000/api/v1/yoga_zukans?id=${userId}` : null,
+    userId ? `${railsApiUrl}/api/v1/yoga_zukans?id=${userId}` : null,
     fetcher
   );
 

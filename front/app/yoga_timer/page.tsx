@@ -10,6 +10,7 @@ import { AxiosError } from "axios";
 import Image from "next/image";
 import { Card } from "primereact/card";
 import YogaTimerBackBuntton from "../components/yoga_timer/BackButton";
+import { railsApiUrl } from "../config";
 
 export default function YogaTimer() {
   const [isClient, setIsClient] = useState(false);
@@ -70,7 +71,7 @@ export default function YogaTimer() {
     if (userId) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/yoga_timers",
+          `${railsApiUrl}/api/v1/yoga_timers`,
           { user_id: userId }
         );
         const { assigned_pose } = response.data;
@@ -179,14 +180,14 @@ export default function YogaTimer() {
       {yogaPose && (
         <div>
           <div className="text-center mt-5 mb-5">
-            <h1 className="font-medium">
+            <h1 className="font-bold text-xl text-neutral-500">
               おめでとうございます！ヨガポーズ図鑑にポーズが増えました👏
             </h1>
           </div>
           <Card
             title={yogaPose.japanese_name}
-            className="mx-auto w-10/12  flex flex-col justify-center text-center mt-5 mb-10
-          transition transform hover:scale-105 bg-white border-2 border-yellow-500
+            className="mx-auto w-3/12  flex flex-col justify-center text-center mt-5 mb-10
+          transition transform  duration-200 hover:scale-105 bg-white border-2 border-yellow-500
           rounded-lg shadow-lg h-200"
           >
             <div className="mx-auto mt-3 mb-3">

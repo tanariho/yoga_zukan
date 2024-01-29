@@ -1,7 +1,8 @@
 import { fetcher } from '@/app/_common/utils';
+import { railsApiUrl } from '@/app/config';
 
 const fetchUserId = async (email: string): Promise<number | null> => {
-  const url = `http://localhost:3000/api/v1/users?email=${encodeURIComponent(email)}`;
+  const url = `${railsApiUrl}/api/v1/users?email=${encodeURIComponent(email)}`;
   
   try {
     const data = await fetcher(url);

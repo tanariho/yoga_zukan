@@ -1,0 +1,1 @@
+export const railsApiUrl = process.env.NEXT_PUBLIC_BACKEND_URL as string
