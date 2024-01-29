@@ -7,6 +7,7 @@ import Footer from "./components/top/Footer";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primeicons/primeicons.css";
+import { ToastProvider } from "./components/context/ToastContext";
 
 const inter = Inconsolata({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
+        <ToastProvider>
           <NextAuthProvider>
             <PrimeReactProvider>
                 <main className="flex-grow" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -33,6 +35,7 @@ export default function RootLayout({
                 <Footer />
             </PrimeReactProvider>
           </NextAuthProvider>
+          </ToastProvider>
         </div>
       </body>
     </html>
