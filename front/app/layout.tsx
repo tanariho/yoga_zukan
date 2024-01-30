@@ -1,4 +1,3 @@
-import 'primereact/resources/primereact.min.css';
 import "./globals.css";
 import "primereact/resources/themes/tailwind-light/theme.css"
 import "primeicons/primeicons.css";
@@ -9,6 +8,7 @@ import NextAuthProvider from "./providers/NextAuth";
 import Footer from "./components/top/Footer";
 import { PrimeReactProvider } from "primereact/api";
 import { ToastProvider } from "./components/context/ToastContext";
+import 'primereact/resources/primereact.min.css';
 
 const inter = Inconsolata({ subsets: ["latin"] });
 
