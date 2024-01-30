@@ -52,7 +52,7 @@ const QuizPage: React.FC = () => {
 
 
   if (error) return <div>An error has occurred.</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div><LoadingScreen /></div>;
 
   return (
     <>

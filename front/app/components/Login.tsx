@@ -1,11 +1,12 @@
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import LoadingScreen from "./loading/Loading";
 
 export default function Login() {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div><LoadingScreen/></div>;
   }
 
   if (status !== "authenticated") {

@@ -34,7 +34,7 @@ const AfterLoginContents = () => {
         </Link>
 
           {/* 時計 */}
-        <Link href="">
+        <Link href="/yoga_timer">
           <div className="hover:scale-105 duration-300 transform">
             <div className="flex justify-center items-center bg-white hover:bg-button rounded-full w-72 h-72  hover:scale-105 duration-300 transform hover:shadow-xl">
               <svg
