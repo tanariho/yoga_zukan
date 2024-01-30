@@ -11,6 +11,7 @@ import Image from "next/image";
 import { Card } from "primereact/card";
 import YogaTimerBackBuntton from "../components/yoga_timer/BackButton";
 import { railsApiUrl } from "../config";
+import LoadingScreen from "../components/loading/Loading";
 
 export default function YogaTimer() {
   const [isClient, setIsClient] = useState(false);
@@ -120,7 +121,7 @@ export default function YogaTimer() {
   }
 
   if (!userId) {
-    return <div>Loading...</div>;
+    return <div><LoadingScreen/></div>;
   }
 
   return (
