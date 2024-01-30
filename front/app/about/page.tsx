@@ -4,7 +4,6 @@ import { nextAuthOptions } from "@/lib/next-auth/options";
 
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
-  console.log(session);
   if (!session || !session.user || !session.user.email) {
     return {
       redirect: {
@@ -15,5 +14,4 @@ export default async function Home() {
   }
 
   const userId = await fetchUserId(session.user.email)
-  console.log(userId)
 }

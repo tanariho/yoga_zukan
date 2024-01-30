@@ -76,7 +76,6 @@ export default function YogaTimer() {
           { user_id: userId }
         );
         const { assigned_pose } = response.data;
-        console.log(assigned_pose);
         if (assigned_pose) {
           setYogaPose(assigned_pose);
           setNoMorePoses(false);
