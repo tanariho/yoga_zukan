@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import NextAuthProvider from "./providers/NextAuth";
 import Footer from "./components/top/Footer";
 import { PrimeReactProvider } from "primereact/api";
-import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primereact/resources/themes/tailwind-light/theme.css"
 import "primeicons/primeicons.css";
 import { ToastProvider } from "./components/context/ToastContext";
 
