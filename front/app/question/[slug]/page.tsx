@@ -15,6 +15,7 @@ import { railsApiUrl } from '@/app/config';
 
 import { useSession } from "next-auth/react";
 import fetchUserId from "@/app/components/fetcher/user/FetchUser";
+import LoadingScreen from "@/app/components/loading/Loading";
 
 export default function YogaQuiz() {
   const { data: session, status } = useSession();
@@ -111,7 +112,7 @@ export default function YogaQuiz() {
   }, [submitted, userId, slug]);
 
   if (error || userIdError) return <div>An error has occurred.</div>;
-  if (!data || !userId) return <div>Loading...</div>;
+  if (!data || !userId) return <div><LoadingScreen /></div>;
 
   if (!data || !data || data.length === 0)
     return <div>この問題は未実装です</div>;
@@ -152,7 +153,7 @@ export default function YogaQuiz() {
               {currentQuestion.answers.map((answer: Answer) => (
                 <div
                   key={answer.id}
-                  className="p-field-radiobutton flex hover:scale-105"
+                  className="p-field-radiobutton flex"
                 >
                   <RadioButton
                     inputId={`answer${answer.id}`}
@@ -160,7 +161,7 @@ export default function YogaQuiz() {
                     value={answer.id}
                     onChange={(e) => handleAnswerChange(e.value)}
                     disabled={submitted}
-                    className="flex"
+                    className="flex hover:scale-105"
                   />
                   <label htmlFor={`answer${answer.id}`} className="flex">
                     {answer.content}
