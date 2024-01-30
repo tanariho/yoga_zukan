@@ -1,14 +1,13 @@
 import "./globals.css";
-import "primereact/resources/themes/tailwind-light/theme.css"
-import "primeicons/primeicons.css";
 import type { Metadata } from "next";
 import { Inconsolata } from "next/font/google";
 import Navbar from "./components/Navbar";
 import NextAuthProvider from "./providers/NextAuth";
 import Footer from "./components/top/Footer";
-import { PrimeReactProvider } from "primereact/api";
+// import { PrimeReactProvider } from "primereact/api";
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/tailwind-light/theme.css"
 import { ToastProvider } from "./components/context/ToastContext";
-import 'primereact/resources/primereact.min.css';
 
 const inter = Inconsolata({ subsets: ["latin"] });
 
@@ -28,13 +27,13 @@ export default function RootLayout({
         <div className="flex flex-col min-h-screen">
         <ToastProvider>
           <NextAuthProvider>
-            <PrimeReactProvider>
+            {/* <PrimeReactProvider> */}
                 <main className="flex-grow" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                   <Navbar />
                   {children}
                 </main>
                 <Footer />
-            </PrimeReactProvider>
+            {/* </PrimeReactProvider> */}
           </NextAuthProvider>
           </ToastProvider>
         </div>
