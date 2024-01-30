@@ -28,7 +28,7 @@ export default function RootLayout({
         <div className="flex flex-col min-h-screen">
         <ToastProvider>
           <NextAuthProvider>
-            <PrimeReactProvider value={{ unstyled: true, pt: {} }}>
+            <PrimeReactProvider>
                 <main className="flex-grow" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                   <Navbar />
                   {children}
