@@ -81,15 +81,15 @@ answers = [
 
   # ヨガ検定10級：3問目:ヨガの本来の目的はなんでしょうか?
   { id: 9, question_id: 3, content: "筋トレのため", correct:false },
-  { id: 10, question_id: 3, content: "心と体をリラックスさせるため", correct: false },
-  { id: 11, question_id: 3, content: "ダイエットのため", correct:true },
+  { id: 10, question_id: 3, content: "心と体をリラックスさせるため", correct: true },
+  { id: 11, question_id: 3, content: "ダイエットのため", correct:false },
   { id: 12, question_id: 3, content: "伝統と文化を守るため", correct:false },
 
   # ヨガ検定10級：4問目:ヨガのポーズを集めて何を完成させますか？
-  { id: 13, question_id: 4, content: "ヨガ雑誌", correct: true },
-  { id: 14, question_id: 4, content: "ポケモン図鑑", correct: true },
+  { id: 13, question_id: 4, content: "ヨガ雑誌", correct: false },
+  { id: 14, question_id: 4, content: "ポケモン図鑑", correct: false },
   { id: 15, question_id: 4, content: "ヨガ図鑑", correct: true },
-  { id: 16, question_id: 4, content: "ヨガみかん", correct: true },
+  { id: 16, question_id: 4, content: "ヨガみかん", correct: false },
 
   # ヨガ検定10級：5問目:ヨガ図鑑を完成させますか？
   { id: 17, question_id: 5, content: "はい", correct: true},
