@@ -1,6 +1,7 @@
-import "primeicons/primeicons.css";
-import "primereact/resources/themes/tailwind-light/theme.css"
+import 'primereact/resources/primereact.min.css';
 import "./globals.css";
+import "primereact/resources/themes/tailwind-light/theme.css"
+import "primeicons/primeicons.css";
 import type { Metadata } from "next";
 import { Inconsolata } from "next/font/google";
 import Navbar from "./components/Navbar";
