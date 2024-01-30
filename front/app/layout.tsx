@@ -24,18 +24,37 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              const style = document.createElement('style')
+              style.innerHTML = '@layer tailwind-base, primereact, tailwind-utilities;'
+              style.setAttribute('type', 'text/css')
+              document.querySelector('head').prepend(style)
+            `,
+          }}
+        />
+      </head>
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
-        <ToastProvider>
-          <NextAuthProvider>
-            <PrimeReactProvider>
-                <main className="flex-grow" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <ToastProvider>
+            <NextAuthProvider>
+              <PrimeReactProvider>
+                <main
+                  className="flex-grow"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: "100vh",
+                  }}
+                >
                   <Navbar />
                   {children}
                 </main>
                 <Footer />
-            </PrimeReactProvider>
-          </NextAuthProvider>
+              </PrimeReactProvider>
+            </NextAuthProvider>
           </ToastProvider>
         </div>
       </body>
