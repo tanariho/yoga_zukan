@@ -59,7 +59,6 @@ export default function YogaQuiz() {
       } else {
         setSubmitted(true);
       }
-      console.log("クエスチョンです", currentQuestionIndex);
     }
   };
 
@@ -81,7 +80,6 @@ export default function YogaQuiz() {
   const submitResult = async () => {
     if (userId !== null && slug) {
       const passed = calculateResult();
-      console.log(passed);
       try {
         const response = await axios.post(
           `${railsApiUrl}/api/v1/quiz_results`,
@@ -93,8 +91,6 @@ export default function YogaQuiz() {
         );
 
         const { passed_true, assigned_pose } = response.data;
-        console.log(response.data);
-        console.log(assigned_pose);
 
         if (passed_true) {
           if (assigned_pose) {
