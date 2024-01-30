@@ -12,6 +12,8 @@ import { Card } from "primereact/card";
 import { Divider } from "primereact/divider";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
+import { railsApiUrl } from "../config";
+import LoadingScreen from "../components/loading/Loading";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -29,15 +31,15 @@ export default function Home() {
   const userIdUrl = session?.user?.email ? `${session.user.email}` : null;
   const { data: userId, error: userIdError } = useSWR(userIdUrl, fetchUserId);
   const { data: yogaPoses, error } = useSWR(
-    userId ? `http://localhost:3000/api/v1/yoga_zukans?id=${userId}` : null,
+    userId ? `${railsApiUrl}/api/v1/yoga_zukans?id=${userId}` : null,
     fetcher
   );
 
   if (error) return <div>An error has occurred.</div>;
-  if (!yogaPoses) return <div>図鑑を読み込んでいます</div>;
+  if (!yogaPoses) return <LoadingScreen />;
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    <LoadingScreen />
   }
 
   if (userIdError) {
@@ -50,16 +52,6 @@ export default function Home() {
     setVisible(true); // ダイアログを表示
   };
 
-  const footerContent = (
-    <div>
-      <Button
-        label="Ok"
-        icon="pi pi-check"
-        onClick={() => setVisible(false)}
-        autoFocus
-      />
-    </div>
-  );
 
   if (status == "authenticated") {
     return (
@@ -76,11 +68,11 @@ export default function Home() {
         <hr className="my-1  border-dotted border-t-2 border-gray-300 mb-3 mx-auto w-10/12" />
 
         <div className="w-10/12 mx-auto">
-          <div className="my-4 flex">
+          <div className="my-4 grid grid-cols-4 gap-4">
             {yogaPoses.map((pose: YogaPose) => (
-              <div key={pose.id} className="mb-3 w-3/12">
+              <div key={pose.id} className="mb-3 ">
                 <Card
-                  className="mr-5 transition transform hover:scale-105 hover:translate-y-1 shadow-md border-2 rounded-lg border-yellow-500"
+                  className="transition transform hover:scale-105 hover:translate-y-1 shadow-md border-2 rounded-lg border-yellow-500 "
                   onClick={() => openDialog(pose)}
                 >
                   <div className="flex justify-center text-center items-center border border-white border-b-gray-200">
@@ -109,6 +101,7 @@ export default function Home() {
                   <Dialog
                     header={selectedPose.japanese_name} // ダイアログのヘッダーに日本語名を表示
                     visible={visible}
+                    modal
                     style={{ width: "40vw" }}
                     onHide={() => setVisible(false)}
                   >

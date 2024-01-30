@@ -10,6 +10,7 @@ import { RadioButton } from "primereact/radiobutton";
 import { Button } from "primereact/button";
 import Link from "next/link";
 import YogaQuizBuntton from "@/app/components/yoga_quiz/Button";
+import { railsApiUrl } from '@/app/config';
 
 
 import { useSession } from "next-auth/react";
@@ -19,7 +20,7 @@ export default function YogaQuiz() {
   const { data: session, status } = useSession();
   const params = useParams();
   const slug = params.slug;
-  const url = `http://localhost:3000/api/v1/quizzes/${slug}`;
+  const url = `${railsApiUrl}/api/v1/quizzes/${slug}`;
   const { data, error } = useSWR<Question[]>(url, fetcher);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
@@ -83,7 +84,7 @@ export default function YogaQuiz() {
       console.log(passed);
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/quiz_results",
+          `${railsApiUrl}/api/v1/quiz_results`,
           {
             user_id: userId,
             quiz_id: slug,
@@ -144,10 +145,10 @@ export default function YogaQuiz() {
   
       {/* 問題 */}
       {!submitted && (
-        <div className="mx-auto w-8/12 mt-5">
+        <div className=" flex mx-auto w-10/12 mt-5  justify-center">
           <Card
             title={currentQuestion.title}
-            className="mx-auto items-center p-5
+            className="items-center p-5 w-10/12 mt-28
             rounded-3xl shadow-xl md:w-25rem h-80 bg-stone-50 border-2 border-yellow-500
             flex flex-col justify-center text-center"
           >

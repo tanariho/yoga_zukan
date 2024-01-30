@@ -10,8 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         footer: '#b1b1b130', // この行を追加
-        orange: '#e2a55e',
-        gleen: '#96aa9a',
+        button: '#e2a55e',
+        buttongreen: '#96aa9a',
         beige: '#e5dfd8'
       },
       backgroundImage: {

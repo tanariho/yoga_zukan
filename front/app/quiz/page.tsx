@@ -1,9 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import useSWR from "swr";
 import { fetcher } from "../_common/utils";
 import Link from "next/link";
 import { Card } from "primereact/card";
+import { railsApiUrl } from "../config";
+import router from "next/router";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import LoadingScreen from "../components/loading/Loading";
+import { useRouter } from "next/navigation";
 
 interface Answer {
   id: number;
@@ -24,18 +30,45 @@ interface Quiz {
 }
 
 const QuizPage: React.FC = () => {
-  const url = "http://localhost:3000/api/v1/quizzes";
+  const router = useRouter()
+  const url = `${railsApiUrl}/api/v1/quizzes`;
   const { data, error } = useSWR(url, fetcher);
+  const { status } = useSession();
+
+ 
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/"); // 未認証の場合、ホームページにリダイレクト
+    }
+  }, [status, router]);
+
+  if (status == "loading") {
+    return <LoadingScreen />;
+  }
+
+  if (status === "unauthenticated") {
+    return null;
+  }
+
 
   if (error) return <div>An error has occurred.</div>;
   if (!data) return <div>Loading...</div>;
 
   return (
     <>
-    <p className = "text-3xl font-bold text-center mb-5 " style={{ color: "#e2a55e" }}>ヨガ検定</p>
-    <p className = "text-ss text-center text-gray-700">ヨガ検定を受けてヨガについての知識を深めよう!</p>
-    <p className = "text-xs text-center mb-10 text-gray-700">合格するとポーズが一つもらえます</p>
-    <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12" />
+      <p
+        className="text-3xl font-bold text-center mb-5 "
+        style={{ color: "#e2a55e" }}
+      >
+        ヨガ検定
+      </p>
+      <p className="text-ss text-center text-gray-700">
+        ヨガ検定を受けてヨガについての知識を深めよう!
+      </p>
+      <p className="text-xs text-center mb-10 text-gray-700">
+        合格するとポーズが一つもらえます
+      </p>
+      <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12" />
 
       <div className="container grid grid-cols-3 w-8/12 gap-6 mx-auto mb-10 mt-10">
         {data.map((quiz: any) => (
