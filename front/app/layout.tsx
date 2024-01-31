@@ -14,6 +14,7 @@ import { ToastProvider } from "./components/context/ToastContext";
 const inter = Inconsolata({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_FRONTEND_URL}`),
   title: "ヨガ図鑑",
   description: "ヨガのポーズの図鑑を完成させるアプリです",
   openGraph: {
@@ -22,15 +23,11 @@ export const metadata: Metadata = {
     title: "ヨガ図鑑",
     description: "ヨガのポーズの図鑑を完成させるアプリです",
     siteName: "ヨガ図鑑",
-    images: [{
-          url: "https://yoga_zukan.vercel.app/opengraph-image.jpg",
-      }],
   },
   twitter: {
     title: "ヨガ図鑑",
     description: "ヨガに触れて、ヨガポーズの図鑑を完成させるアプリです。",
     card: "summary_large_image",
-    "images":"https://yoga_zukan.vercel.app/opengraph-image.jpg"
   },
 };
 
