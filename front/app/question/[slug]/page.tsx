@@ -17,6 +17,7 @@ import { useSession } from "next-auth/react";
 import fetchUserId from "@/app/components/fetcher/user/FetchUser";
 import LoadingScreen from "@/app/components/loading/Loading";
 import TwitterShareButton from "@/app/components/share/XShare";
+import SimpleTwitterShareButton from "@/app/components/share/SimpleXShare_";
 
 export default function YogaQuiz() {
   const { data: session, status } = useSession();
@@ -215,7 +216,7 @@ export default function YogaQuiz() {
           すでにヨガポーズを制覇しているようです！！
         </div>
         <YogaQuizBuntton/>
-        <TwitterShareButton />
+        <SimpleTwitterShareButton />
         </div>
         
       )}

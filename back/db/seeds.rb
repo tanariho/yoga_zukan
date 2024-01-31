@@ -139,7 +139,11 @@ yoga_poses = [
   { id: 2, japanese_name: 'ラクダのポーズ', sanskrit_name: 'ウストラーサナ', number: 2, level: 'intermediate', illustration: '/yoga_pose/rakuda.png', how_to_read: 'Camel Pose', explanation: '背中と胸を開くポーズ' },
   { id: 3, japanese_name: '平和な戦士のポーズ', sanskrit_name: 'リバースウォーリア', number: 3, level: 'intermediate', illustration: '/yoga_pose/reverse_warrior_non_back.png', how_to_read: 'Reverse Warrior', explanation: '体側のストレッチを行うポーズ' },
   { id: 4, japanese_name: '安楽座（あぐら)', sanskrit_name: 'スカーサナ', number: 4, level: 'beginner', illustration: '/yoga_pose/agura.png', how_to_read: 'Easy Pose', explanation: '心や呼吸が安定するポーズです。ヨガを始める前や、瞑想中によく登場するポーズです。' },
-  { id: 5, japanese_name: '山のポーズ', sanskrit_name: 'ターダーサナ', number: 5, level: 'beginner', illustration: '/yoga_pose/mount.png', how_to_read: 'Mountain Pose', explanation: 'しっかりと山のように立つポーズ。太もも、膝、足首を強化します。' }
+  { id: 5, japanese_name: '山のポーズ', sanskrit_name: 'ターダーサナ', number: 5, level: 'beginner', illustration: '/yoga_pose/mount.png', how_to_read: 'Mountain Pose', explanation: 'しっかりと山のように立つポーズ。太もも、膝、足首を強化します。' },
+  { id: 6, japanese_name: '下を向いた犬のポーズ(ダウンドッグ)', sanskrit_name: 'アドームカシュヴァーナーサナ', number: 6, level: 'beginner', illustration: '/yoga_pose/down_dog.png', how_to_read: 'Downward Facing Dog Pose', explanation: '息を整えながら、数呼吸の間このポーズをキープします。体全体を伸ばすのに役立ち、肩、背中、脚のストレッチに効果的です。' },
+
+  { id: 7, japanese_name: 'イスのポーズ', sanskrit_name: 'ウッカーターサナ', number: 7, level: 'intermediate', illustration: '/yoga_pose/chair.png', how_to_read: 'Chair Pose', explanation: 'まるで椅子に座るようなポーズ。太ももと背中を鍛え、バランスと集中力を高めます。' },
+  { id: 8, japanese_name: 'ハトのポーズ', sanskrit_name: 'エーカパーダカポターサナ', number: 8, level: 'beginner', illustration: '/yoga_pose/hato.png', how_to_read: 'Pigeon Pose', explanation: '股関節の柔軟性を高めるのに効果的です。ヨガっぽいポーズですね。' }
 ]
 
 yoga_poses.each do |yoga_pose|
