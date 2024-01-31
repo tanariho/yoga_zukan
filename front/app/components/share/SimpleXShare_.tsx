@@ -2,8 +2,8 @@ import React from 'react';
 import TwitterIcon from './Icon';
 import { Button } from 'primereact/button';
 
-const TwitterShareButton = (name:string) => {
-  const tweetText =`ヨガ図鑑を集めました！\nヨガ図鑑\nURL：https://yoga-zukan.vercel.app/`
+const SimpleTwitterShareButton = () => {
+  const tweetText =`悟りを開いてヨガ図鑑を全部集めました！\n`
   const pageUrl ="https://yoga-zukan.vercel.app/";
 
   return (
@@ -24,4 +24,4 @@ const TwitterShareButton = (name:string) => {
   );
 };
 
-export default TwitterShareButton;
+export default SimpleTwitterShareButton;
