@@ -14,6 +14,7 @@ import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { railsApiUrl } from "../config";
 import LoadingScreen from "../components/loading/Loading";
+import TwitterShareButton from "../components/share/XShare";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -104,6 +105,7 @@ export default function Home() {
                     modal
                     style={{ width: "40vw" }}
                     onHide={() => setVisible(false)}
+                    footer={<TwitterShareButton pose={ selectedPose.japanese_name }/>}
                   >
                     <Image
                       src={selectedPose.illustration} // 選択されたポーズの画像を表示

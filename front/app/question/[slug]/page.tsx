@@ -16,6 +16,7 @@ import { railsApiUrl } from '@/app/config';
 import { useSession } from "next-auth/react";
 import fetchUserId from "@/app/components/fetcher/user/FetchUser";
 import LoadingScreen from "@/app/components/loading/Loading";
+import TwitterShareButton from "@/app/components/share/XShare";
 
 export default function YogaQuiz() {
   const { data: session, status } = useSession();
@@ -201,6 +202,9 @@ export default function YogaQuiz() {
             </div>
           </Card>
           <YogaQuizBuntton/>
+          <div className = "mb-20">
+          <TwitterShareButton name= {yogaPose.japanese_name}/>
+          </div>
         </div>
       )}
   
@@ -211,6 +215,7 @@ export default function YogaQuiz() {
           すでにヨガポーズを制覇しているようです！！
         </div>
         <YogaQuizBuntton/>
+        <TwitterShareButton />
         </div>
         
       )}
