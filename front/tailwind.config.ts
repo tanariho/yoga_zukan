@@ -14,7 +14,8 @@ const config: Config = {
         footer: '#b1b1b130', // この行を追加
         button: '#e2a55e',
         buttongreen: '#96aa9a',
-        beige: '#e5dfd8'
+        beige: '#e5dfd8',
+        backcolor:'#f3f3f3'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

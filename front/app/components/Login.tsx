@@ -11,20 +11,20 @@ export default function Login() {
 
   if (status !== "authenticated") {
     return (
-      <div className = "hover:scale-105">
+      <li className = "p-2 cursor-pointer hover:bg-beige rounded-lg">
         <button onClick={() => signIn("google", {}, { prompt: "login" })}>
         <span className = "pi pi-sign-in" style={{ color: '#e2a55e' }}></span> Googleで新規登録・ログイン
         </button>
-      </div>
+      </li>
     );
   }
 
   if (status == "authenticated") {
     return (
       <>
-        <div className = "mb-4 hover:scale-105">
+        <li className = "mb-4 p-2 cursor-pointer hover:bg-beige rounded-lg">
           <button onClick={() => signOut()}><span className = "pi pi-sign-out" style={{ color: '#96aa9a' }}></span> ログアウト</button>
-				</div>
+				</li>
       </>
     );
   }

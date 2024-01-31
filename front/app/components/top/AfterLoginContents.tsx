@@ -3,7 +3,7 @@ import Link from "next/link";
 const AfterLoginContents = () => {
   return (
     <div>
-      <p className="text-6xl font-bold text-center mb-5 text-yellow-700">
+      <p className="text-6xl font-bold text-center mb-5 text-button">
         ヨガコンテンツ
       </p>
       <p className="text-ss text-center text-gray-600 mb-10">
