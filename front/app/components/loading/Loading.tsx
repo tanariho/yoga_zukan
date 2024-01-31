@@ -13,7 +13,7 @@ const LoadingScreen = () => {
         height = {300}
         className = "animate-bounce"
         ></Image>
-      <div className = "text-center font-bold text-neutral-400">ちょっとシャバーサナ</div>
+      <div className = "text-center font-bold text-neutral-400">ちょっとシャバーサナ...</div>
       </div>
     </div>
   );
