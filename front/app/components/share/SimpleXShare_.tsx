@@ -3,8 +3,8 @@ import TwitterIcon from './Icon';
 import { Button } from 'primereact/button';
 
 const TwitterShareButton = (name:string) => {
-  const tweetText =`ヨガ図鑑を集めました！\nヨガ図鑑\nURL：https://yoga_zukan.vercel.app/`
-  const pageUrl ="https://yoga_zukan.vercel.app/";
+  const tweetText =`ヨガ図鑑を集めました！\nヨガ図鑑\nURL：https://yoga-zukan.vercel.app/`
+  const pageUrl ="https://yoga-zukan.vercel.app/";
 
   return (
     <div className = "flex justify-center">
