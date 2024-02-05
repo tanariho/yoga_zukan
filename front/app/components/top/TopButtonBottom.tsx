@@ -4,14 +4,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 
-const TopButton = () => {
+const TopButtonButtom = () => {
   const [visible, setVisible] = useState(false);
 
   return (
     <div>
-      <div className="flex justify-center mx-auto md:w-5/12 lg:h-24 xl:w-4/12 w-7/12">
+      <div className="flex justify-center">
         <Button
-          className="w-11/12 h-full p-button-warning text-center rounded-lg max-md:text-xs lg:text-2xl flex justify-center my-auto mx-auto bg-button text-white border-none hover:bg-yellow-600"
+          className="p-button-warning text-center max-md:text-xs text-xl flex justify-center my-auto mx-auto rounded-md  bg-button text-white border-none hover:bg-yellow-600"
           onClick={() => setVisible(true)}
           size="large"
         >
@@ -64,4 +64,4 @@ const TopButton = () => {
   );
 };
 
-export default TopButton;
+export default TopButtonButtom;
