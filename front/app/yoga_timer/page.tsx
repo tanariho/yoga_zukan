@@ -40,22 +40,27 @@ export default function YogaTimer() {
     setIsClient(true);
   }, []);
 
-  useEffect(() => {
-    // ウィンドウサイズに基づいてノブのサイズを設定する
+  function handleResize() {
+    // ウィンドウサイズが変更されたときにノブのサイズを更新する
     setKnobSize(GetKnobSize());
-  
-    function handleResize() {
-      // ウィンドウサイズが変更されたときにノブのサイズを更新する
+  }
+
+
+  useEffect(() => {
+    // クライアントサイドでのみ実行されることを確認
+    if (typeof window !== 'undefined') {
+      // ウィンドウサイズに基づいてノブのサイズを設定する
       setKnobSize(GetKnobSize());
+  
+    
+      // リサイズイベントリスナーを設定する
+      window.addEventListener("resize", handleResize);
+    
+      // コンポーネントがアンマウントされたときにイベントリスナーを削除する
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
     }
-  
-    // リサイズイベントリスナーを設定する
-    window.addEventListener("resize", handleResize);
-  
-    // コンポーネントがアンマウントされたときにイベントリスナーを削除する
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
   console.log(knobSize);
 
