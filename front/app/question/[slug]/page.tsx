@@ -7,8 +7,6 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { Card } from "primereact/card";
 import { RadioButton } from "primereact/radiobutton";
-import { Button } from "primereact/button";
-import Link from "next/link";
 import YogaQuizBuntton from "@/app/components/yoga_quiz/Button";
 import { railsApiUrl } from '@/app/config';
 

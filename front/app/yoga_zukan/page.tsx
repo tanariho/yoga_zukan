@@ -11,7 +11,6 @@ import Image from "next/image";
 import { Card } from "primereact/card";
 import { Divider } from "primereact/divider";
 import { Dialog } from "primereact/dialog";
-import { Button } from "primereact/button";
 import { railsApiUrl } from "../config";
 import LoadingScreen from "../components/loading/Loading";
 import TwitterShareButton from "../components/share/XShare";
@@ -68,8 +67,8 @@ export default function Home() {
         </p>
         <hr className="my-1  border-dotted border-t-2 border-gray-300 mb-3 mx-auto w-10/12" />
 
-        <div className="w-10/12 mx-auto">
-          <div className="my-4 grid grid-cols-4 gap-4">
+        <div className="w-10/12 max-md:w-10/12 mx-auto">
+          <div className="my-4 grid grid-cols-4 max-md:grid-cols-2 gap-4">
             {yogaPoses.map((pose: YogaPose) => (
               <div key={pose.id} className="mb-3 ">
                 <Card
@@ -77,11 +76,11 @@ export default function Home() {
                   onClick={() => openDialog(pose)}
                 >
                   <div className="flex justify-center text-center items-center border border-white border-b-gray-200">
-                    <p className="text-lg font-bold text-center flex-[2]">
+                    <p className="text-lg max-md:text-base font-bold text-center flex-[2]">
                       0{pose.number}
                     </p>
                     <Divider layout="vertical" />
-                    <p className="text-md font-bold text-center flex-[7]">
+                    <p className="text-md max-md:text-xs font-bold text-center flex-[7]">
                       {pose.japanese_name}
                     </p>
                   </div>
@@ -96,7 +95,7 @@ export default function Home() {
                     />
                   )}
                   <Divider />
-                  <div className="text-center">{pose.sanskrit_name}</div>
+                  <div className="text-center max-md:text-xs">{pose.sanskrit_name}</div>
                 </Card>
                 {selectedPose && (
                   <Dialog
@@ -104,6 +103,7 @@ export default function Home() {
                     visible={visible}
                     modal
                     style={{ width: "40vw" }}
+                    breakpoints={{ '960px': '75vw', '641px': '90vw' }}
                     onHide={() => setVisible(false)}
                     footer={<TwitterShareButton pose={ selectedPose.japanese_name }/>}
                   >

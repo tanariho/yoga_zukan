@@ -12,7 +12,7 @@ export default function Login() {
   if (status !== "authenticated") {
     return (
       <li className = "p-2 cursor-pointer hover:bg-beige rounded-lg">
-        <button onClick={() => signIn("google", {}, { prompt: "login" })}>
+        <button  onClick={() => signIn("google", {}, { prompt: "login" })}>
         <span className = "pi pi-sign-in" style={{ color: '#e2a55e' }}></span> Googleで新規登録・ログイン
         </button>
       </li>

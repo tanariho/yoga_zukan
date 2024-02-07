@@ -11,7 +11,7 @@ const YogaTimerBackBuntton = () => {
             color: "white",
             border: "none",
           }}
-          className="p-button-warning"
+          className="p-button-warning custom-font"
         >
           ヨガ図鑑を見に行く
         </Button>

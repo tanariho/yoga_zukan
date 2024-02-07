@@ -11,7 +11,7 @@ const TopButton = () => {
     <div>
       <div className="flex justify-center mx-auto md:w-5/12 lg:h-24 xl:w-4/12 w-7/12">
         <Button
-          className="w-11/12 h-full p-button-warning text-center rounded-lg max-md:text-xs lg:text-2xl flex justify-center my-auto mx-auto bg-button text-white border-none hover:bg-yellow-600"
+          className="w-11/12 h-full p-button-warning text-center rounded-lg max-md:text-xs lg:text-2xl flex justify-center my-auto mx-auto bg-button text-white border-none hover:bg-yellow-600 custom-font"
           onClick={() => setVisible(true)}
           size="large"
         >
@@ -47,7 +47,7 @@ const TopButton = () => {
           <div className="flex justify-center lg:mt-10">
             <Button
               onClick={() => signIn("google", {}, { prompt: "login" })}
-              className="mt-5 bg-buttongreen border-lime-800 hover:bg-lime-800"
+              className="mt-5 bg-buttongreen border-lime-800 hover:bg-lime-800 custom-font"
               size="large"
               severity="success"
             >

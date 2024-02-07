@@ -1,12 +1,16 @@
 @layer  tailwind-base,primereact,tailwind-utilities;
 
 @layer tailwind-base {
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500&display=swap');
   @tailwind base;
 }
 
 @layer tailwind-utilities {
   @tailwind components;
   @tailwind utilities;
+}
+.custom-font {
+  font-family: '__Zen_Maru_Gothic_c37b24';
 }
 
 body {
