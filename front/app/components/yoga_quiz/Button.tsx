@@ -11,7 +11,7 @@ const YogaQuizBuntton = () => {
             color: "white",
             border: "none",
           }}
-          className="p-button-warning"
+          className="p-button-warning custom-font"
         >
           ヨガ図鑑を見に行く
         </Button>
@@ -24,7 +24,7 @@ const YogaQuizBuntton = () => {
             color: "white",
             border: "none",
           }}
-          className="p-button-warning ml-3"
+          className="p-button-warning ml-3 custom-font"
         >
           他の問題を解く
         </Button>

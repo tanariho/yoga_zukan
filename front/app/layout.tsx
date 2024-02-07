@@ -1,7 +1,7 @@
 import { PrimeReactProvider } from "primereact/api";
 import type { Metadata } from "next";
 import Head from "next/head";
-import { Inconsolata } from "next/font/google";
+import { Zen_Maru_Gothic } from "next/font/google";
 import Navbar from "./components/Navbar";
 import NextAuthProvider from "./providers/NextAuth";
 import Footer from "./components/top/Footer";
@@ -11,7 +11,10 @@ import "primereact/resources/primereact.min.css";
 import "./globals.css";
 import { ToastProvider } from "./components/context/ToastContext";
 
-const inter = Inconsolata({ subsets: ["latin"] });
+const zen_maru = Zen_Maru_Gothic({
+  subsets: ["latin"],
+  weight: "500"
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_FRONTEND_URL}`),
@@ -55,7 +58,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={zen_maru.className}>
         <ToastProvider>
           <NextAuthProvider>
             <PrimeReactProvider>
