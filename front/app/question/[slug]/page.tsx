@@ -117,7 +117,7 @@ export default function YogaQuiz() {
   if (!data || !userId) return <div><LoadingScreen /></div>;
 
   if (!data || !data || data.length === 0)
-    return <div>この問題は未実装です</div>;
+    return <div className = "mx-auto flex justify-center items-center font-bold text-buttongreen text-2xl">この問題は未実装です</div>;
 
   const currentQuestion = data[currentQuestionIndex];
   if (!currentQuestion) return <div>Question not found.</div>;
@@ -147,11 +147,11 @@ export default function YogaQuiz() {
         <div className=" flex mx-auto w-10/12 mt-5  justify-center">
           <Card
             title={currentQuestion.title}
-            className="items-center p-5 w-10/12 mt-28
-            rounded-3xl shadow-xl md:w-25rem h-80 bg-stone-50 border-2 border-yellow-500
+            className="items-center p-5 w-10/12 mt-28 max-md:w-full
+            rounded-3xl shadow-xl h-80 bg-stone-50 border-2 border-yellow-500
             flex flex-col justify-center text-center"
           >
-            <div className="flex justify-center items-center text-center mx-auto mt-10 gap-4">
+            <div className="flex justify-center items-center text-center mx-auto mt-10 gap-4 max-md:grid max-md:grid-cols-1 max-md:mt-3">
               {currentQuestion.answers.map((answer: Answer) => (
                 <div
                   key={answer.id}
@@ -177,7 +177,7 @@ export default function YogaQuiz() {
         
       {/* 提出済みで合格、かつヨガポーズがある場合 */}
       {submitted && calculateResult() && yogaPose && (
-        <div>
+        <div className = "max-md:w-11/12 mx-auto">
           <div className="text-center mt-10 mb-5">
             <h1 className="font-medium">
               おめでとうございます！ヨガポーズ図鑑にポーズが増えました👏
@@ -185,7 +185,7 @@ export default function YogaQuiz() {
           </div>
           <Card
             title={yogaPose.japanese_name}
-            className="mx-auto w-3/12  flex flex-col justify-center text-center mt-5 mb-10
+            className="mx-auto w-3/12 max-md:w-full  flex flex-col justify-center text-center mt-5 mb-10
             transition transform hover:scale-105 bg-white border-2 border-yellow-500
             rounded-lg shadow-lg h-200"
           >

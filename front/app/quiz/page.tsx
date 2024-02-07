@@ -57,24 +57,23 @@ const QuizPage: React.FC = () => {
   return (
     <>
       <p
-        className="text-3xl font-bold text-center mb-5 "
-        style={{ color: "#e2a55e" }}
+        className="text-3xl font-bold text-center  text-button mb-5 max-md:mt-10"
       >
         ヨガ検定
       </p>
-      <p className="text-ss text-center text-gray-700">
+      <p className="text-ss max-md:text-sm text-center text-gray-700">
         ヨガ検定を受けてヨガについての知識を深めよう!
       </p>
       <p className="text-xs text-center mb-10 text-gray-700">
         合格するとポーズが一つもらえます
       </p>
-      <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12" />
+      <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12 max-md:w-10/12" />
 
-      <div className="container grid grid-cols-3 w-8/12 gap-6 mx-auto mb-10 mt-10">
+      <div className="container grid grid-cols-3 max-md:grid-cols-1 w-8/12  max-md:w-10/12 gap-6 max-md:gap-2 mx-auto mb-10 mt-10">
         {data.map((quiz: any) => (
           <Link href={`/question/${quiz.id}`} key={quiz.id}>
             <Card
-              className="flex justify-center items-center text-center  h-28 mx-auto 
+              className="flex justify-center items-center text-center  h-28 max-md:h-14 mx-auto 
               rounded-lg shadow-lg hover:bg-neutral-100 active:bg-neutral-200 hover:scale-105 
               transition transform border border-yellow-500"
             >

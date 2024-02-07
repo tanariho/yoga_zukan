@@ -12,6 +12,21 @@ import { Card } from "primereact/card";
 import YogaTimerBackBuntton from "../components/yoga_timer/BackButton";
 import { railsApiUrl } from "../config";
 import LoadingScreen from "../components/loading/Loading";
+import useWindowWidth from "../components/fook/UseWindowWidth";
+
+
+function getSize(windowWidth: number) {
+  if (windowWidth < 640) {
+    // 'sm' 
+    return 200; 
+  } else if (windowWidth >= 640 && windowWidth < 768) {
+    // 'md' 
+    return 300; 
+  } else {
+    return 500; // large
+  }
+}
+
 
 export default function YogaTimer() {
   const [isClient, setIsClient] = useState(false);
@@ -21,6 +36,7 @@ export default function YogaTimer() {
   const intervalRef = useRef<number | undefined>(undefined);
   const isRunningRef = useRef(isRunning);
   const [noMorePoses, setNoMorePoses] = useState(false);
+  const [knobSize, setKnobSize] = useState(getSize(100));
 
   const { data: session } = useSession();
   const { data: userId, error: userIdError } = useSWR(
@@ -37,6 +53,18 @@ export default function YogaTimer() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  //windowのサイズを取得してその値に応じてknobのsizeの値を変える
+  const windowWidth = useWindowWidth()
+
+  console.log(windowWidth)
+  useEffect(() => {
+    // コンポーネントのマウント時およびwindowWidthが変更されたときに実行
+    setKnobSize(getSize(windowWidth));
+  }, [windowWidth]); // windowWidthを依存配列に追加
+  
+
+
 
   useEffect(() => {
     if (isRunning) {
@@ -71,10 +99,9 @@ export default function YogaTimer() {
   const onTimerComplete = async () => {
     if (userId) {
       try {
-        const response = await axios.post(
-          `${railsApiUrl}/api/v1/yoga_timers`,
-          { user_id: userId }
-        );
+        const response = await axios.post(`${railsApiUrl}/api/v1/yoga_timers`, {
+          user_id: userId,
+        });
         const { assigned_pose } = response.data;
         if (assigned_pose) {
           setYogaPose(assigned_pose);
@@ -120,30 +147,33 @@ export default function YogaTimer() {
   }
 
   if (!userId) {
-    return <div><LoadingScreen/></div>;
+    return (
+      <div>
+        <LoadingScreen />
+      </div>
+    );
   }
 
   return (
-    <div >
+    <div>
       <div className="mx-auto">
-      <p
-        className="text-4xl font-bold text-center mb-5"
-        style={{ color: "#96aa9a" }}
-      >
-        ヨガタイマー
-      </p>
-      <p className="text-ss text-center text-gray-700">
-        タイマーをかけて30分間ヨガをしてみましょう！
-      </p>
-      <p className="text-ss text-center mb-2 text-gray-700">
-        達成するとポーズが一つもらえます
-      </p>
-      <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12" />
+        <p
+          className="text-4xl font-bold text-center mb-5"
+          style={{ color: "#96aa9a" }}
+        >
+          ヨガタイマー
+        </p>
+        <p className="text-ss text-center text-gray-700">
+          タイマーをかけて30分間ヨガをしてみましょう！
+        </p>
+        <p className="text-ss text-center mb-2 text-gray-700">
+          達成するとポーズが一つもらえます
+        </p>
+        <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12" />
       </div>
 
       {isClient && (
-        <div className="flex justify-content-center align-items-center mt-2 mb-20">
-          <div className="mx-auto">
+        <div>
             <div className="flex justify-center">
               <Knob
                 value={timeLeft}
@@ -154,31 +184,34 @@ export default function YogaTimer() {
                 min={0}
                 max={1800}
                 step={1}
-                size={500}
+                size={knobSize}
                 disabled={!isRunning}
                 className="items-center"
               />
             </div>
-            <div className="flex justify-center">
-              <Button onClick={startTimer} disabled={isRunning}>
+            <div className="flex justify-center mb-20">
+              <Button
+                className ="ml-3 text-white"
+                onClick={startTimer}
+                disabled={isRunning}
+              >
                 開始
               </Button>
               <Button
                 onClick={stopTimer}
                 disabled={!isRunning}
-                className="ml-3"
+                className="ml-3 text-white"
               >
                 停止
               </Button>
-              <Button onClick={resetTimer} className="ml-3">
+              <Button onClick={resetTimer} className="ml-3 text-white">
                 リセット
               </Button>
             </div>
-          </div>
         </div>
       )}
       {yogaPose && (
-        <div>
+        <div className= "max-md:w-11/12 mx-auto">
           <div className="text-center mt-5 mb-5">
             <h1 className="font-bold text-xl text-neutral-500">
               おめでとうございます！ヨガポーズ図鑑にポーズが増えました👏
@@ -186,7 +219,7 @@ export default function YogaTimer() {
           </div>
           <Card
             title={yogaPose.japanese_name}
-            className="mx-auto w-3/12  flex flex-col justify-center text-center mt-5 mb-10
+            className="mx-auto lg:w-3/12  md:w-4/12 max-md:w-full  flex flex-col justify-center text-center mt-5 mb-10
           transition transform  duration-200 hover:scale-105 bg-white border-2 border-yellow-500
           rounded-lg shadow-lg h-200"
           >

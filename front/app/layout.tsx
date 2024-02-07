@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_FRONTEND_URL}`),
   title: "ヨガ図鑑",
   description: "ヨガのポーズの図鑑を完成させるアプリです",
+  viewport: {
+    width: "device-width", 
+    initialScale: 1 ,
+    maximumScale: 1,
+  },
   openGraph: {
     type: "website",
     url: "https://yoga-zukan.vercel.app/",
@@ -30,7 +35,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
 };
-
 
 export default function RootLayout({
   children,
@@ -52,10 +56,10 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
-          <ToastProvider>
-            <NextAuthProvider>
-              <PrimeReactProvider>
+        <ToastProvider>
+          <NextAuthProvider>
+            <PrimeReactProvider>
+              <div className="flex flex-col">
                 <main
                   className="flex-grow"
                   style={{
@@ -67,11 +71,11 @@ export default function RootLayout({
                   <Navbar />
                   {children}
                 </main>
-                <Footer />
-              </PrimeReactProvider>
-            </NextAuthProvider>
-          </ToastProvider>
-        </div>
+              </div>
+              <Footer />
+            </PrimeReactProvider>
+          </NextAuthProvider>
+        </ToastProvider>
       </body>
     </html>
   );
