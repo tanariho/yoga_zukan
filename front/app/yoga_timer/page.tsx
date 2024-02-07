@@ -12,7 +12,21 @@ import { Card } from "primereact/card";
 import YogaTimerBackBuntton from "../components/yoga_timer/BackButton";
 import { railsApiUrl } from "../config";
 import LoadingScreen from "../components/loading/Loading";
-import GetKnobSize from "../components/yoga_timer/GetKnobSize";
+import useWindowWidth from "../components/yoga_timer/UseWindowWidth";
+
+
+function getSize(windowWidth: number) {
+  if (windowWidth < 640) {
+    // 'sm' 
+    return 200; 
+  } else if (windowWidth >= 640 && windowWidth < 768) {
+    // 'md' 
+    return 300; 
+  } else {
+    return 500; // large
+  }
+}
+
 
 export default function YogaTimer() {
   const [isClient, setIsClient] = useState(false);
@@ -22,7 +36,7 @@ export default function YogaTimer() {
   const intervalRef = useRef<number | undefined>(undefined);
   const isRunningRef = useRef(isRunning);
   const [noMorePoses, setNoMorePoses] = useState(false);
-  const [knobSize, setKnobSize] = useState(GetKnobSize());
+  const [knobSize, setKnobSize] = useState(getSize(100));
 
   const { data: session } = useSession();
   const { data: userId, error: userIdError } = useSWR(
@@ -40,28 +54,16 @@ export default function YogaTimer() {
     setIsClient(true);
   }, []);
 
-  
-  
+  //windowのサイズを取得してその値に応じてknobのsizeの値を変える
+  const windowWidth = useWindowWidth()
+
+  console.log(windowWidth)
   useEffect(() => {
-    function handleResize() {
-      // ウィンドウサイズが変更されたときにノブのサイズを更新する
-      setKnobSize(GetKnobSize());
-    }
-    if (typeof window !== 'undefined') {
-      // ウィンドウサイズに基づいてノブのサイズを設定する
-      setKnobSize(GetKnobSize());
+    // コンポーネントのマウント時およびwindowWidthが変更されたときに実行
+    setKnobSize(getSize(windowWidth));
+  }, [windowWidth]); // windowWidthを依存配列に追加
   
-    
-      // リサイズイベントリスナーを設定する
-      window.addEventListener("resize", handleResize);
-    
-      // コンポーネントがアンマウントされたときにイベントリスナーを削除する
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, []);
-  console.log(knobSize);
+
 
 
   useEffect(() => {
