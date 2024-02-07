@@ -211,7 +211,7 @@ export default function YogaTimer() {
         </div>
       )}
       {yogaPose && (
-        <div>
+        <div className= "max-md:w-11/12 mx-auto">
           <div className="text-center mt-5 mb-5">
             <h1 className="font-bold text-xl text-neutral-500">
               おめでとうございます！ヨガポーズ図鑑にポーズが増えました👏
@@ -219,7 +219,7 @@ export default function YogaTimer() {
           </div>
           <Card
             title={yogaPose.japanese_name}
-            className="mx-auto w-3/12  flex flex-col justify-center text-center mt-5 mb-10
+            className="mx-auto lg:w-3/12  md:w-4/12 max-md:w-full  flex flex-col justify-center text-center mt-5 mb-10
           transition transform  duration-200 hover:scale-105 bg-white border-2 border-yellow-500
           rounded-lg shadow-lg h-200"
           >
