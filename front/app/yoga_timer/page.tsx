@@ -12,7 +12,7 @@ import { Card } from "primereact/card";
 import YogaTimerBackBuntton from "../components/yoga_timer/BackButton";
 import { railsApiUrl } from "../config";
 import LoadingScreen from "../components/loading/Loading";
-import useWindowWidth from "../components/yoga_timer/UseWindowWidth";
+import useWindowWidth from "../components/fook/UseWindowWidth";
 
 
 function getSize(windowWidth: number) {
