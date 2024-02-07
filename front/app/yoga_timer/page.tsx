@@ -47,7 +47,6 @@ export default function YogaTimer() {
 
 
   useEffect(() => {
-    // クライアントサイドでのみ実行されることを確認
     if (typeof window !== 'undefined') {
       // ウィンドウサイズに基づいてノブのサイズを設定する
       setKnobSize(GetKnobSize());
