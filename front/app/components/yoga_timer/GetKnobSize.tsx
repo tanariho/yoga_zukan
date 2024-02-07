@@ -1,4 +1,4 @@
-
+"use client"
 const  GetKnobSize =() =>{
 
     const width = window.innerWidth;
