@@ -18,7 +18,7 @@ import useWindowWidth from "../components/fook/UseWindowWidth";
 function getSize(windowWidth: number) {
   if (windowWidth < 640) {
     // 'sm' 
-    return 200; 
+    return 250; 
   } else if (windowWidth >= 640 && windowWidth < 768) {
     // 'md' 
     return 300; 
@@ -61,7 +61,7 @@ export default function YogaTimer() {
   useEffect(() => {
     // コンポーネントのマウント時およびwindowWidthが変更されたときに実行
     setKnobSize(getSize(windowWidth));
-  }, [windowWidth]); // windowWidthを依存配列に追加
+  }, [windowWidth]); 
   
 
 
@@ -158,8 +158,7 @@ export default function YogaTimer() {
     <div>
       <div className="mx-auto">
         <p
-          className="text-4xl font-bold text-center mb-5"
-          style={{ color: "#96aa9a" }}
+          className="text-4xl font-bold text-center mb-5 max-md:mt-10 text-button"
         >
           ヨガタイマー
         </p>
@@ -186,12 +185,12 @@ export default function YogaTimer() {
                 step={1}
                 size={knobSize}
                 disabled={!isRunning}
-                className="items-center"
+                className="items-center max-md:mt-10"
               />
             </div>
-            <div className="flex justify-center mb-20">
+            <div className="flex justify-center mb-20 max-md:mt-10">
               <Button
-                className ="ml-3 text-white"
+                className ="ml-3 text-white custom-font"
                 onClick={startTimer}
                 disabled={isRunning}
               >
@@ -200,11 +199,11 @@ export default function YogaTimer() {
               <Button
                 onClick={stopTimer}
                 disabled={!isRunning}
-                className="ml-3 text-white"
+                className="ml-3 text-white custom-font"
               >
                 停止
               </Button>
-              <Button onClick={resetTimer} className="ml-3 text-white">
+              <Button onClick={resetTimer} className="ml-3 text-white custom-font">
                 リセット
               </Button>
             </div>
