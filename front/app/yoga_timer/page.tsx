@@ -40,13 +40,13 @@ export default function YogaTimer() {
     setIsClient(true);
   }, []);
 
-  function handleResize() {
-    // ウィンドウサイズが変更されたときにノブのサイズを更新する
-    setKnobSize(GetKnobSize());
-  }
-
-
+  
+  
   useEffect(() => {
+    function handleResize() {
+      // ウィンドウサイズが変更されたときにノブのサイズを更新する
+      setKnobSize(GetKnobSize());
+    }
     if (typeof window !== 'undefined') {
       // ウィンドウサイズに基づいてノブのサイズを設定する
       setKnobSize(GetKnobSize());
