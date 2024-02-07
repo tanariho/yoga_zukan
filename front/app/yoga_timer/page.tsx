@@ -12,6 +12,7 @@ import { Card } from "primereact/card";
 import YogaTimerBackBuntton from "../components/yoga_timer/BackButton";
 import { railsApiUrl } from "../config";
 import LoadingScreen from "../components/loading/Loading";
+import GetKnobSize from "../components/yoga_timer/GetKnobSize";
 
 export default function YogaTimer() {
   const [isClient, setIsClient] = useState(false);
@@ -21,6 +22,7 @@ export default function YogaTimer() {
   const intervalRef = useRef<number | undefined>(undefined);
   const isRunningRef = useRef(isRunning);
   const [noMorePoses, setNoMorePoses] = useState(false);
+  const [knobSize, setKnobSize] = useState(GetKnobSize());
 
   const { data: session } = useSession();
   const { data: userId, error: userIdError } = useSWR(
@@ -37,6 +39,26 @@ export default function YogaTimer() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    // ウィンドウサイズに基づいてノブのサイズを設定する
+    setKnobSize(GetKnobSize());
+  
+    function handleResize() {
+      // ウィンドウサイズが変更されたときにノブのサイズを更新する
+      setKnobSize(GetKnobSize());
+    }
+  
+    // リサイズイベントリスナーを設定する
+    window.addEventListener("resize", handleResize);
+  
+    // コンポーネントがアンマウントされたときにイベントリスナーを削除する
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  console.log(knobSize);
+
 
   useEffect(() => {
     if (isRunning) {
@@ -71,10 +93,9 @@ export default function YogaTimer() {
   const onTimerComplete = async () => {
     if (userId) {
       try {
-        const response = await axios.post(
-          `${railsApiUrl}/api/v1/yoga_timers`,
-          { user_id: userId }
-        );
+        const response = await axios.post(`${railsApiUrl}/api/v1/yoga_timers`, {
+          user_id: userId,
+        });
         const { assigned_pose } = response.data;
         if (assigned_pose) {
           setYogaPose(assigned_pose);
@@ -120,30 +141,33 @@ export default function YogaTimer() {
   }
 
   if (!userId) {
-    return <div><LoadingScreen/></div>;
+    return (
+      <div>
+        <LoadingScreen />
+      </div>
+    );
   }
 
   return (
-    <div >
+    <div>
       <div className="mx-auto">
-      <p
-        className="text-4xl font-bold text-center mb-5"
-        style={{ color: "#96aa9a" }}
-      >
-        ヨガタイマー
-      </p>
-      <p className="text-ss text-center text-gray-700">
-        タイマーをかけて30分間ヨガをしてみましょう！
-      </p>
-      <p className="text-ss text-center mb-2 text-gray-700">
-        達成するとポーズが一つもらえます
-      </p>
-      <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12" />
+        <p
+          className="text-4xl font-bold text-center mb-5"
+          style={{ color: "#96aa9a" }}
+        >
+          ヨガタイマー
+        </p>
+        <p className="text-ss text-center text-gray-700">
+          タイマーをかけて30分間ヨガをしてみましょう！
+        </p>
+        <p className="text-ss text-center mb-2 text-gray-700">
+          達成するとポーズが一つもらえます
+        </p>
+        <hr className="my-1  border-dotted border-t-2 border-gray-300 mx-auto w-8/12" />
       </div>
 
       {isClient && (
-        <div className="flex justify-content-center align-items-center mt-2 mb-20">
-          <div className="mx-auto">
+        <div>
             <div className="flex justify-center">
               <Knob
                 value={timeLeft}
@@ -154,27 +178,30 @@ export default function YogaTimer() {
                 min={0}
                 max={1800}
                 step={1}
-                size={500}
+                size={knobSize}
                 disabled={!isRunning}
                 className="items-center"
               />
             </div>
-            <div className="flex justify-center">
-              <Button onClick={startTimer} disabled={isRunning}>
+            <div className="flex justify-center mb-20">
+              <Button
+                className ="ml-3 text-white"
+                onClick={startTimer}
+                disabled={isRunning}
+              >
                 開始
               </Button>
               <Button
                 onClick={stopTimer}
                 disabled={!isRunning}
-                className="ml-3"
+                className="ml-3 text-white"
               >
                 停止
               </Button>
-              <Button onClick={resetTimer} className="ml-3">
+              <Button onClick={resetTimer} className="ml-3 text-white">
                 リセット
               </Button>
             </div>
-          </div>
         </div>
       )}
       {yogaPose && (
