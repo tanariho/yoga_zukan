@@ -10,3 +10,15 @@ module.exports = {
     domains: ['lh3.googleusercontent.com'], // ここに外部ホスト名を追加
   },
 };
+
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+})
+
+module.exports = withPWA({
+  //next.js config
+  reactStrictMode: true,
+})
+
