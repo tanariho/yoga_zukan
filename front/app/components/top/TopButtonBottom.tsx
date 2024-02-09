@@ -26,7 +26,7 @@ const TopButtonButtom = () => {
         dismissableMask = {true}
         // style={{ width: "60vw" }}
         onHide={() => setVisible(false)}
-        className = "max-md:w-64 w-auto"
+        className = "max-md:w-11/12 w-auto"
       >
         <div>
           <div className="flex justify-center mx-auto xl:w-10/12 w-full">
@@ -47,7 +47,7 @@ const TopButtonButtom = () => {
           <div className="flex justify-center lg:mt-10">
             <Button
               onClick={() => signIn("google", {}, { prompt: "login" })}
-              className="mt-5 bg-buttongreen border-lime-800 hover:bg-lime-800 custom-font"
+              className="mt-5 bg-buttongreen border-lime-800 hover:bg-lime-800 custom-font max-md:text-sm"
               size="large"
               severity="success"
             >
