@@ -47,6 +47,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+      <link rel="manifest" href="/manifest.json" />
+        <link rel="yoga-icon" href="/icon.png"></link>
+        <meta name="theme-color" content="#96AA9A" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

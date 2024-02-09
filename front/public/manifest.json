@@ -1,0 +1,32 @@
+{
+    "theme_color": "#96AA9A",
+    "background_color": "#E2A55E",
+    "display": "standalone",
+    "scope": "/yoga-zukan/",
+    "start_url": "/",
+    "name": "\u30e8\u30ac\u56f3\u9451",
+    "short_name": "\u30e8\u30ac\u56f3\u9451",
+    "description": "\u30e8\u30ac\u306b\u89e6\u308c\u3066\u56f3\u9451\u306b\u30e8\u30ac\u30dd\u30fc\u30ba\u3092\u96c6\u3081\u3088\u3046",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
