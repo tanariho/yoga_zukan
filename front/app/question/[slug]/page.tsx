@@ -146,7 +146,7 @@ export default function YogaQuiz() {
           <Card
             title={currentQuestion.title}
             className="items-center p-5 w-10/12 mt-28 max-md:w-full
-            rounded-3xl shadow-xl h-80 bg-stone-50 border-2 border-yellow-500
+            rounded-3xl shadow-xl md:h-80 bg-stone-50 border-2 border-yellow-500
             flex flex-col justify-center text-center"
           >
             <div className="flex justify-center items-center text-center mx-auto mt-10 gap-4 max-md:grid max-md:grid-cols-1 max-md:mt-3">
