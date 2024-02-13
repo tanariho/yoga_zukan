@@ -116,7 +116,7 @@ const Navbar = () => {
                   <Link href="/">
                     <li
                       onClick={handleMenuOpen}
-                      className="p-2 cursor-pointer mb-10  hover:bg-beige rounded-lg"
+                      className="p-2 cursor-pointer mb-10  hover:bg-stone-200 rounded-lg text-neutral-400"
                     >
                       <i
                         className="pi pi-pencil"
@@ -125,18 +125,18 @@ const Navbar = () => {
                       ジャーナリング瞑想
                     </li>
                   </Link>
-                  <Link href="/mypage">
+                  <div  className = "disabled:opacity-50" >
                     <li
-                      onClick={handleMenuOpen}
-                      className="p-2 cursor-pointer   hover:bg-beige rounded-lg"
+                      
+                      className="p-2 cursor-pointer   hover:bg-stone-200 rounded-lg text-neutral-400"
                     >
                       <i
                         className="pi pi-user"
                         style={{ color: "#96aa9a" }}
                       ></i>{" "}
-                      マイページ
+                      マイページ(coming soon)
                     </li>
-                  </Link>
+                  </div>
                   <Link href="/yoga_zukan">
                     <li
                       onClick={handleMenuOpen}
