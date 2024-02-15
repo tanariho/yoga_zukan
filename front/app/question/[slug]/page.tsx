@@ -75,7 +75,7 @@ export default function YogaQuiz() {
         incorrectCount++;
       }
     });
-    return incorrectCount <= 3;
+    return incorrectCount <= 1;
   };
 
   const submitResult = async () => {
