@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://yoga-zukan.vercel.app/",
+    url: "https://yoga-zukan.com/",
     title: "ヨガ図鑑",
     description: "ヨガのポーズの図鑑を完成させるアプリです",
     siteName: "ヨガ図鑑",

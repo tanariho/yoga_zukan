@@ -57,7 +57,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  Rails.application.config.hosts << 'yoga-zukan.vercel.app'
+  Rails.application.config.hosts << 'yoga-zukan.com'
   config.hosts << 'yoga-zukan.onrender.com'
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

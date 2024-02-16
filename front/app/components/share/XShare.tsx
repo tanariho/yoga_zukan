@@ -4,7 +4,7 @@ import { Button } from 'primereact/button';
 
 const TwitterShareButton = ({ pose }:any) => {
   const tweetText =`${pose}を集めました！\nヨガ図鑑を集めよう！\n`
-  const pageUrl ="https://yoga-zukan.vercel.app/";
+  const pageUrl ="https://yoga-zukan.com/";
 
   return (
     <div className = "flex justify-center">
