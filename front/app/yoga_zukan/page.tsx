@@ -68,11 +68,11 @@ export default function Home() {
         <hr className="my-1  border-dotted border-t-2 border-gray-300 mb-3 mx-auto w-10/12" />
 
         <div className="w-10/12 max-md:w-10/12 mx-auto">
-          <div className="my-4 grid grid-cols-4 max-md:grid-cols-2 gap-4">
+          <div className="my-4 grid lg:grid-cols-4 md:grid-cols-2 max-md:grid-cols-2 gap-4">
             {yogaPoses.map((pose: YogaPose) => (
-              <div key={pose.id} className="mb-3 ">
+              <div key={pose.id} className="mb-3 flex">
                 <Card
-                  className="transition transform hover:scale-105 hover:translate-y-1 shadow-md border-2 rounded-lg border-yellow-500 "
+                  className="transition transform hover:scale-105 hover:translate-y-1 shadow-md border-2 rounded-lg border-yellow-500 flex flex-col w-full"
                   onClick={() => openDialog(pose)}
                 >
                   <div className="flex justify-center text-center items-center border border-white border-b-gray-200">
@@ -95,7 +95,7 @@ export default function Home() {
                     />
                   )}
                   <Divider />
-                  <div className="text-center max-md:text-xs">{pose.sanskrit_name}</div>
+                  <div className="text-center max-md:text-xs min-h-50">{pose.sanskrit_name}</div>
                 </Card>
                 {selectedPose && (
                   <Dialog
