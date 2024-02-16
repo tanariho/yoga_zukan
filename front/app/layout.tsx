@@ -10,6 +10,7 @@ import "primereact/resources/themes/saga-orange/theme.css";
 import "primereact/resources/primereact.min.css";
 import "./globals.css";
 import { ToastProvider } from "./components/context/ToastContext";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const zen_maru = Zen_Maru_Gothic({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <GoogleAnalytics gaId="G-PYFD7CFSK5" />
       </head>
       <body className={zen_maru.className}>
         <ToastProvider>
