@@ -202,7 +202,7 @@ export default function YogaQuiz() {
           </Card>
           <YogaQuizBuntton/>
           <div className = "mb-20">
-          <TwitterShareButton name= {yogaPose.japanese_name}/>
+          <TwitterShareButton pose= {yogaPose.japanese_name}/>
           </div>
         </div>
       )}
