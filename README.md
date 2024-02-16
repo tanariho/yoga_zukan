@@ -1,5 +1,8 @@
 # ヨガ図鑑
 
+## サービスURL
+https://yoga-zukan.com/
+
 ## 画面遷移図
 https://www.figma.com/file/RKccM169KFeAFrlyPPK0AF/%E3%83%A8%E3%82%AC%E5%9B%B3%E9%91%91?type=design&node-id=0%3A1&mode=design&t=Nn7fltJaA3MJz3aQ-1
 
