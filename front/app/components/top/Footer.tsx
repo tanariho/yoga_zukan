@@ -23,14 +23,14 @@ const Footer = () => {
 
         <nav className="space-x-6 mb-3 max-md:text-xs">
           <Link
-            href="/"
+            href="/privacy_policy"
             data-testid="privacy-policy"
             className="hover:opacity-50 transition-all duration-100"
           >
             プライバシーポリシー
           </Link>
           <Link
-            href="/"
+            href="/terms_of_service"
             data-testid="terms-of-service"
             className="hover:opacity-50 transition-all duration-100"
           >
